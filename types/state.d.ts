@@ -1,10 +1,5 @@
 import { Link, QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue } from './index';
 
-export interface RootState {
-  pageLinks: PageLinksState;
-  qrCodeGenerator: QrCodeGeneratorState;
-}
-
 export interface PageLinksState {
   topPageLink: Link;
   trainNumberPageLink: Link;
@@ -22,4 +17,9 @@ export interface QrCodeGeneratorState {
   renderAs: QrCodeRenderAsOptionValue;
   backGround: string;
   foreGround: string;
+}
+
+export interface RootState {
+  pageLinks: PageLinksState;
+  qrCodeGenerator: QrCodeGeneratorState;
 }
