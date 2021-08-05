@@ -23,31 +23,35 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { QrCodeRenderAsOptionValue } from '~/types';
+import { QrCodeRenderAsOptionValue, RootState } from '~/types';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
 
 interface RenderAsFormOption {
   value: QrCodeRenderAsOptionValue;
   text: string;
 }
 
-export default Vue.extend({
+export default defineComponent({
   name: 'RenderAsField',
-  computed: {
-    renderAs: {
-      get (): string {
-        return this.$store.state.qrCodeGenerator.renderAs;
+  setup () {
+    const store = useStore<RootState>();
+    const renderAs = computed({
+      get: (): string => {
+        return store.state.qrCodeGenerator.renderAs;
       },
-      set (renderAs): void {
-        this.$store.commit('qrCodeGenerator/setRenderAs', renderAs);
+      set: (val) => {
+        store.commit('qrCodeGenerator/setRenderAs', val);
       },
-    },
-    renderAsForms (): RenderAsFormOption[] {
-      return [
-        { value: 'svg', text: 'SVG' },
-        { value: 'canvas', text: 'Canvas' },
-      ];
-    },
+    });
+    const renderAsForms = computed<RenderAsFormOption[]>(() => [
+      { value: 'svg', text: 'SVG' },
+      { value: 'canvas', text: 'Canvas' },
+    ]);
+
+    return {
+      renderAs,
+      renderAsForms,
+    };
   },
 });
 </script>

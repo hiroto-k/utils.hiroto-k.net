@@ -23,33 +23,37 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { QrCodeErrorCorrectionLevel } from '~/types';
+import { QrCodeErrorCorrectionLevel, RootState } from '~/types';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
 
 interface ErrorCorrectionLevelFormOption {
   value: QrCodeErrorCorrectionLevel;
   text: string;
 }
 
-export default Vue.extend({
+export default defineComponent({
   name: 'ErrorCorrectionLevelField',
-  computed: {
-    level: {
-      get (): string {
-        return this.$store.state.qrCodeGenerator.level;
+  setup () {
+    const store = useStore<RootState>();
+    const level = computed({
+      get: (): string => {
+        return store.state.qrCodeGenerator.level;
       },
-      set (level): void {
-        this.$store.commit('qrCodeGenerator/setLevel', level);
+      set: (val) => {
+        store.commit('qrCodeGenerator/setLevel', val);
       },
-    },
-    levelForms (): ErrorCorrectionLevelFormOption[] {
-      return [
-        { value: 'L', text: 'Level L (7%)' },
-        { value: 'M', text: 'Level M (15%)' },
-        { value: 'Q', text: 'Level Q (25%)' },
-        { value: 'H', text: 'Level H (30%)' },
-      ];
-    },
+    });
+    const levelForms = computed<ErrorCorrectionLevelFormOption[]>(() => [
+      { value: 'L', text: 'Level L (7%)' },
+      { value: 'M', text: 'Level M (15%)' },
+      { value: 'Q', text: 'Level Q (25%)' },
+      { value: 'H', text: 'Level H (30%)' },
+    ]);
+
+    return {
+      level,
+      levelForms,
+    };
   },
 });
 </script>

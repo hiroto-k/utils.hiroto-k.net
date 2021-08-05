@@ -9,19 +9,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { RootState } from '~/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'ValueField',
-  computed: {
-    value: {
-      get (): string {
-        return this.$store.state.qrCodeGenerator.value;
+  setup () {
+    const store = useStore<RootState>();
+    const value = computed({
+      get: () => {
+        return store.state.qrCodeGenerator.value;
       },
-      set (value): void {
-        this.$store.commit('qrCodeGenerator/setValue', value);
+      set: (val) => {
+        store.commit('qrCodeGenerator/setValue', val);
       },
-    },
+    });
+
+    return {
+      value,
+    };
   },
 });
 </script>

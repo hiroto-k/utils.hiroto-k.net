@@ -18,22 +18,28 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { RootState } from '~/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'SizeField',
-  computed: {
-    size: {
-      get (): string {
-        return this.$store.state.qrCodeGenerator.size;
+  setup () {
+    const store = useStore<RootState>();
+    const size = computed({
+      get: (): number => {
+        return store.state.qrCodeGenerator.size;
       },
-      set (size): void {
-        this.$store.commit('qrCodeGenerator/setSize', size);
+      set: (val) => {
+        store.commit('qrCodeGenerator/setSize', val);
       },
-    },
-    sliderTicks (): number[] {
-      return [0, 100, 200, 300, 400, 500];
-    },
+    });
+
+    const sliderTicks = computed<number[]>(() => [0, 100, 200, 300, 400, 500]);
+
+    return {
+      size,
+      sliderTicks,
+    };
   },
 });
 </script>
