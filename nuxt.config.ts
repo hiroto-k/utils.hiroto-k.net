@@ -53,6 +53,8 @@ const nuxtConfig: Configuration = {
     }],
 
     '@nuxtjs/eslint-module',
+
+    '@nuxtjs/composition-api/module',
   ],
 
   /*

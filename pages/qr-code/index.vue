@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
 import QrCodeVue from 'qrcode.vue';
 import ValueField from '~/components/pages/qr-code/ValueField';
 import SizeField from '~/components/pages/qr-code/SizeField';
@@ -52,15 +52,38 @@ import ErrorCorrectionLevelField from '~/components/pages/qr-code/ErrorCorrectio
 import RenderAsField from '~/components/pages/qr-code/RenderAsField';
 import BackGroundField from '~/components/pages/qr-code/BackGroundField';
 import ForeGroundField from '~/components/pages/qr-code/ForeGroundField';
-import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue } from '~/types';
+import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue, RootState } from '~/types';
 
-export default Vue.extend({
-  head () {
-    return {
-      title: this.title,
+export default defineComponent({
+  head: {},
+  setup () {
+    const title = computed<string>(() => 'QRコード生成');
+    const description = computed<string>(() => 'ブラウザでQRコードを生成．');
+
+    useMeta(() => ({
+      title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    const store = useStore<RootState>();
+    const value = computed<string>(() => store.state.qrCodeGenerator.value);
+    const size = computed<number>(() => store.state.qrCodeGenerator.size);
+    const level = computed<QrCodeErrorCorrectionLevel>(() => store.state.qrCodeGenerator.level);
+    const renderAs = computed<QrCodeRenderAsOptionValue>(() => store.state.qrCodeGenerator.renderAs);
+    const backGround = computed<string>(() => store.state.qrCodeGenerator.backGround);
+    const foreGround = computed<string>(() => store.state.qrCodeGenerator.foreGround);
+
+    return {
+      title,
+      description,
+      value,
+      size,
+      level,
+      renderAs,
+      backGround,
+      foreGround,
     };
   },
   components: {
@@ -71,32 +94,6 @@ export default Vue.extend({
     RenderAsField,
     BackGroundField,
     ForeGroundField,
-  },
-  computed: {
-    title (): string {
-      return 'QRコード生成';
-    },
-    description (): string {
-      return 'ブラウザでQRコードを生成。';
-    },
-    value (): string {
-      return this.$store.state.qrCodeGenerator.value;
-    },
-    size (): number {
-      return this.$store.state.qrCodeGenerator.size;
-    },
-    level (): QrCodeErrorCorrectionLevel {
-      return this.$store.state.qrCodeGenerator.level;
-    },
-    renderAs (): QrCodeRenderAsOptionValue {
-      return this.$store.state.qrCodeGenerator.renderAs;
-    },
-    backGround (): string {
-      return this.$store.state.qrCodeGenerator.backGround;
-    },
-    foreGround (): string {
-      return this.$store.state.qrCodeGenerator.foreGround;
-    },
   },
 });
 </script>

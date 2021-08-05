@@ -9,19 +9,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { RootState } from '~/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'BackGroundField',
-  computed: {
-    backGround: {
-      get (): string {
-        return this.$store.state.qrCodeGenerator.backGround;
+  setup () {
+    const store = useStore<RootState>();
+    const backGround = computed({
+      get: (): string => {
+        return store.state.qrCodeGenerator.backGround;
       },
-      set (backGround): void {
-        this.$store.commit('qrCodeGenerator/setBackGround', backGround);
+      set: (val) => {
+        store.commit('qrCodeGenerator/setBackGround', val);
       },
-    },
+    });
+
+    return {
+      backGround,
+    };
   },
 });
 </script>

@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from '@nuxtjs/composition-api';
 import PageFooter from '~/components/layouts/PageFooter';
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     PageFooter,
   },

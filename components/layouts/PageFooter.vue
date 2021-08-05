@@ -32,21 +32,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Link } from '~/types';
+import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { Link, RootState } from '~/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'PageFooter',
-  computed: {
-    allPageLinks (): Link[] {
-      return this.$store.getters['pageLinks/allPageLinks'];
-    },
-    footerTitle (): string {
-      return '© 2019 hiroxto';
-    },
-    footerLinksTitle (): string {
-      return 'Page links';
-    },
+  setup () {
+    const store = useStore<RootState>();
+    const allPageLinks = computed<Link[]>(() => store.getters['pageLinks/allPageLinks']);
+    const footerTitle = computed<string>(() => '© 2019 hiroxto');
+    const footerLinksTitle = computed<string>(() => 'Page links');
+
+    return {
+      allPageLinks,
+      footerTitle,
+      footerLinksTitle,
+    };
   },
 });
 </script>

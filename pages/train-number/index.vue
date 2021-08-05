@@ -14,32 +14,33 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
-import { Link } from '~/types';
+import { Link, RootState } from '~/types';
 
-export default Vue.extend({
-  head () {
-    return {
-      title: this.title,
+export default defineComponent({
+  head: {},
+  setup () {
+    const store = useStore<RootState>();
+    const title = computed<string>(() => '列車番号メモ');
+    const description = computed<string>(() => '入出場，車輪転削などの予定臨や，パターンが概ね決まっている臨工や臨単の列車番号のメモ．');
+    const trainNumberContentPageLinks = computed<Link[]>(() => store.getters['pageLinks/trainNumberContentPageLinks']);
+
+    useMeta(() => ({
+      title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    return {
+      title,
+      description,
+      trainNumberContentPageLinks,
     };
   },
   components: {
     LinksMenu,
-  },
-  computed: {
-    trainNumberContentPageLinks (): Link[] {
-      return this.$store.getters['pageLinks/trainNumberContentPageLinks'];
-    },
-    title (): string {
-      return '列車番号メモ';
-    },
-    description (): string {
-      return '入出場,車輪転削などの予定臨や、パターンが概ね決まっている臨工や臨単の列車番号のメモ。';
-    },
   },
 });
 </script>

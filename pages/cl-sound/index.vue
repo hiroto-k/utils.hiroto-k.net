@@ -19,30 +19,31 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, computed, useMeta } from '@nuxtjs/composition-api';
 import PlaySound from '~/components/pages/cl-sound/PlaySound';
 import Specification from '~/components/pages/cl-sound/Specification';
 
-export default Vue.extend({
-  head () {
-    return {
-      title: this.title,
+export default defineComponent({
+  head: {},
+  setup () {
+    const title = computed<string>(() => 'EMVコンタクトレスのサウンドをWeb Audio APIで再生');
+    const description = computed<string>(() => 'EMVコンタクトレスのサウンドをWeb Audio APIで再生');
+
+    useMeta(() => ({
+      title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    return {
+      title,
+      description,
     };
   },
   components: {
     PlaySound,
     Specification,
-  },
-  computed: {
-    title (): string {
-      return 'EMVコンタクトレスのサウンドをWeb Audio APIで再生';
-    },
-    description (): string {
-      return 'EMVコンタクトレスのサウンドをWeb Audio APIで再生';
-    },
   },
 });
 </script>

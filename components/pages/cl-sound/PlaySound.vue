@@ -15,27 +15,28 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, computed } from '@nuxtjs/composition-api';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'PlaySound',
-  computed: {
-    audioContext (): AudioContext {
-      return new AudioContext();
-    },
-  },
-  methods: {
-    playSound (): void {
-      const oscillator = this.audioContext.createOscillator();
+  setup () {
+    const audioContext = computed<AudioContext>(() => new AudioContext());
+    const playSound = (): void => {
+      const oscillator = audioContext.value.createOscillator();
       oscillator.type = 'sine';
       oscillator.frequency.value = 1500;
-      oscillator.connect(this.audioContext.destination);
+      oscillator.connect(audioContext.value.destination);
       oscillator.start(0);
 
       window.setTimeout(() => {
         oscillator.stop();
       }, 500);
-    },
+    };
+
+    return {
+      audioContext,
+      playSound,
+    };
   },
 });
 </script>

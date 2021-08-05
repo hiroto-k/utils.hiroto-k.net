@@ -14,33 +14,34 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
-import { Link } from '~/types';
+import { Link, PageLinksState } from '~/types';
 
-export default Vue.extend({
-  head () {
-    return {
-      title: this.title,
+export default defineComponent({
+  head: {},
+  setup () {
+    const title = computed<string>(() => 'utils.hiroxto.net');
+    const description = computed<string>(() => 'Utility site for me.');
+    const linksStore = useStore<PageLinksState>();
+    const pageLinks = computed<Link[]>(() => linksStore.getters['pageLinks/pageLinks']);
+
+    useMeta(() => ({
+      title: title.value,
       titleTemplate: '',
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    return {
+      title,
+      description,
+      pageLinks,
     };
   },
   components: {
     LinksMenu,
-  },
-  computed: {
-    pageLinks (): Link[] {
-      return this.$store.getters['pageLinks/pageLinks'];
-    },
-    title (): string {
-      return 'utils.hiroxto.net';
-    },
-    description (): string {
-      return 'Utility site for me.';
-    },
   },
 });
 </script>
