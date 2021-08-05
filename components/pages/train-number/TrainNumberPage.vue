@@ -4,32 +4,39 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { computed, defineComponent, PropType, useMeta } from '@nuxtjs/composition-api';
 import MarkDownOnlyContent from '~/components/MarkDownOnlyContent';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'TrainNumberPage',
-  components: {
-    MarkDownOnlyContent,
+  props: {
+    title: {
+      required: true,
+      type: String,
+    } as PropType<string>,
+    source: {
+      required: true,
+      type: String,
+    } as PropType<string>,
   },
-  head () {
-    return {
-      title: this.title,
+  head: {},
+  setup (props) {
+    const title = props.title;
+    const description = computed<string>(() => `列車番号メモ ${title}`);
+
+    useMeta(() => ({
+      title: title,
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    return {
+      description,
     };
   },
-  computed: {
-    title (): string {
-      return 'title';
-    },
-    description (): string {
-      return `列車番号メモ ${this.title}`;
-    },
-    source (): string {
-      return '';
-    },
+  components: {
+    MarkDownOnlyContent,
   },
 });
 </script>
