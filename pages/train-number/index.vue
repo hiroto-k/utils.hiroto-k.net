@@ -19,6 +19,7 @@ import LinksMenu from '~/components/ui/LinksMenu';
 import { Link, RootState } from '~/types';
 
 export default defineComponent({
+  head: {},
   setup () {
     const store = useStore<RootState>();
     const title = computed<string>(() => '列車番号メモ');
