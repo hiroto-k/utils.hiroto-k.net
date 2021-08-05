@@ -20,10 +20,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue';
+import { defineComponent, PropOptions } from '@nuxtjs/composition-api';
 import { Link } from '~/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'LinksMenu',
   props: {
     links: {
