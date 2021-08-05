@@ -19,30 +19,31 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import NumberCalc from '~/components/pages/train-number-calc/NumberCalc';
 import HowToCalc from '~/components/pages/train-number-calc/HowToCalc';
+import { computed, defineComponent, useMeta } from '@nuxtjs/composition-api';
 
-export default Vue.extend({
-  head () {
-    return {
-      title: this.title,
+export default defineComponent({
+  head: {},
+  setup () {
+    const title = computed<string>(() => '列車番号から列車種別を計算');
+    const description = computed<string>(() => '列車番号から列車種別(特急客, 臨急客, 臨特急客, 高速貨A, 臨専貨A, など)を計算できるページ．');
+
+    useMeta(() => ({
+      title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'description', name: 'description', content: description.value },
       ],
+    }));
+
+    return {
+      title,
+      description,
     };
   },
   components: {
     NumberCalc,
     HowToCalc,
-  },
-  computed: {
-    title (): string {
-      return '列車番号から列車種別を計算';
-    },
-    description (): string {
-      return '列車番号から列車種別(特急客, 臨急客, 臨特急客, 高速貨A, 臨専貨A, など)を計算できるページ。';
-    },
   },
 });
 </script>

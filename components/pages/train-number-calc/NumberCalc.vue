@@ -35,12 +35,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { ValidationProvider, extend, localize } from 'vee-validate';
 import { numeric, between } from 'vee-validate/dist/rules';
 import ja from 'vee-validate/dist/locale/ja.json';
 import TrainNumberCalc from '~/lib/TrainNumberCalc';
 import { TrainNumberType } from '~/types';
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 
 ja.messages['not-starts-with-zero'] = '{_field_}は不正な値です。';
 extend('numeric', numeric);
@@ -59,31 +59,25 @@ localize('ja', {
   messages: ja.messages,
 });
 
-export default Vue.extend({
+export default defineComponent({
   name: 'NumberCalc',
-  data () {
+  setup () {
+    const trainNumber = ref('');
+    const numberCalc = computed<TrainNumberCalc>(() => new TrainNumberCalc(trainNumber.value));
+    const trainType = computed<TrainNumberType|null>(() => numberCalc.value.calc());
+    const isRenderTrainType = computed<boolean>(() => (trainType.value !== null));
+    const getInputClass = (errors: string[]): string => errors.length === 0 ? 'is-success' : 'is-danger';
+
     return {
-      trainNumber: '',
+      trainNumber,
+      numberCalc,
+      trainType,
+      isRenderTrainType,
+      getInputClass,
     };
   },
   components: {
     ValidationProvider,
-  },
-  computed: {
-    numberCalc (): TrainNumberCalc {
-      return new TrainNumberCalc(this.trainNumber);
-    },
-    trainType (): TrainNumberType|null {
-      return this.numberCalc.calc();
-    },
-    isRenderTrainType (): boolean {
-      return this.trainType !== null;
-    },
-  },
-  methods: {
-    getInputClass (errors: string[]): string {
-      return errors.length === 0 ? 'is-success' : 'is-danger';
-    },
   },
 });
 </script>
