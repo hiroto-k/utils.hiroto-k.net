@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue';
+import { defineComponent, PropOptions } from '@nuxtjs/composition-api';
 import MarkDownContent from '~/components/MarkDownContent';
 import { MarkedOptions } from 'marked';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'MarkDownOnlyContent',
   props: {
     source: {

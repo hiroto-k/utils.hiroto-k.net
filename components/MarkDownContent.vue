@@ -4,10 +4,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue';
+import { computed, defineComponent, PropOptions } from '@nuxtjs/composition-api';
 import marked, { MarkedOptions } from 'marked';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'MarkDownContent',
   props: {
     source: {
@@ -22,10 +22,12 @@ export default Vue.extend({
       },
     } as PropOptions<MarkedOptions>,
   },
-  computed: {
-    markedContent (): string {
-      return marked(this.source, this.options);
-    },
+  setup (props) {
+    const markedContent = computed<string>(() => marked(props.source, props.options));
+
+    return {
+      markedContent,
+    };
   },
 });
 </script>
