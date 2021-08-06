@@ -1,6 +1,6 @@
-import { Configuration } from '@nuxt/types';
+import { NuxtConfig } from '@nuxt/types';
 
-const nuxtConfig: Configuration = {
+const nuxtConfig: NuxtConfig = {
   mode: 'universal',
 
   /*
