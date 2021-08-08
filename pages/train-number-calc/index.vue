@@ -21,13 +21,13 @@
 <script lang="ts">
 import NumberCalc from '~/components/pages/train-number-calc/NumberCalc';
 import HowToCalc from '~/components/pages/train-number-calc/HowToCalc';
-import { computed, defineComponent, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   head: {},
   setup () {
-    const title = computed<string>(() => '列車番号から列車種別を計算');
-    const description = computed<string>(() => '列車番号から列車種別(特急客, 臨急客, 臨特急客, 高速貨A, 臨専貨A, など)を計算できるページ．');
+    const title = ref<string>('列車番号から列車種別を計算');
+    const description = ref<string>('列車番号から列車種別(特急客, 臨急客, 臨特急客, 高速貨A, 臨専貨A, など)を計算できるページ．');
 
     useMeta(() => ({
       title: title.value,
