@@ -16,8 +16,8 @@ export default defineComponent({
   name: 'ForeGroundField',
   setup () {
     const store = useStore<RootState>();
-    const foreGround = computed({
-      get: (): string => {
+    const foreGround = computed<string>({
+      get: () => {
         return store.state.qrCodeGenerator.foreGround;
       },
       set: (val) => {
