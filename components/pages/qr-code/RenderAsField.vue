@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { QrCodeRenderAsOptionValue, RootState } from '~/types';
-import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, reactive, useStore } from '@nuxtjs/composition-api';
 
 interface RenderAsFormOption {
   value: QrCodeRenderAsOptionValue;
@@ -43,7 +43,7 @@ export default defineComponent({
         store.commit('qrCodeGenerator/setRenderAs', val);
       },
     });
-    const renderAsForms = computed<RenderAsFormOption[]>(() => [
+    const renderAsForms = reactive<RenderAsFormOption[]>([
       { value: 'svg', text: 'SVG' },
       { value: 'canvas', text: 'Canvas' },
     ]);

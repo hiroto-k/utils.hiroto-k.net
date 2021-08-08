@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, reactive } from '@nuxtjs/composition-api';
 
 interface FreightHtmlList {
   html: string;
@@ -51,13 +51,13 @@ interface FreightHtmlList {
 export default defineComponent({
   name: 'HowToCalc',
   setup () {
-    const passengerHtmlList = computed<string[]>(() => [
+    const passengerHtmlList = reactive<string[]>([
       '桁数が1,2,4桁で、4桁のときの百位が<code>0</code>の場合、<strong>特急客</strong>。',
       '桁数が3,4桁かつ、百位が<code>0</code>以外で下2桁が<code>00〜19</code>の場合、<strong>急客</strong>',
       '桁数が3,4桁かつ、百位が<code>0</code>以外で下2桁が<code>20〜49</code>の場合、<strong>客</strong>',
       '千位が<code>6</code>以上の場合は種別の頭に<code>臨</code>が付く。(e.g. <strong>臨特急</strong>, <strong>臨急客</strong>, <strong>臨客</strong>)',
     ]);
-    const freightHtmlList = computed<FreightHtmlList[]>(() => [
+    const freightHtmlList = reactive<FreightHtmlList[]>([
       {
         html: '千位が<code>0～5</code>、百位が<code>0</code>の場合、<strong>高速貨</strong>。下2桁で<strong>高速貨A</strong>と<strong>高速貨B</strong>に分かれる。',
         list: [
