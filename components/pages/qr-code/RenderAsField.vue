@@ -35,8 +35,8 @@ export default defineComponent({
   name: 'RenderAsField',
   setup () {
     const store = useStore<RootState>();
-    const renderAs = computed({
-      get: (): string => {
+    const renderAs = computed<QrCodeRenderAsOptionValue>({
+      get: () => {
         return store.state.qrCodeGenerator.renderAs;
       },
       set: (val) => {

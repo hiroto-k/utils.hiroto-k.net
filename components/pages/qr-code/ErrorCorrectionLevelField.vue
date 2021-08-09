@@ -35,8 +35,8 @@ export default defineComponent({
   name: 'ErrorCorrectionLevelField',
   setup () {
     const store = useStore<RootState>();
-    const level = computed({
-      get: (): string => {
+    const level = computed<QrCodeErrorCorrectionLevel>({
+      get: () => {
         return store.state.qrCodeGenerator.level;
       },
       set: (val) => {

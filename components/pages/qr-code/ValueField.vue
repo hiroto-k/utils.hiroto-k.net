@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'ValueField',
   setup () {
     const store = useStore<RootState>();
-    const value = computed({
+    const value = computed<string>({
       get: () => {
         return store.state.qrCodeGenerator.value;
       },

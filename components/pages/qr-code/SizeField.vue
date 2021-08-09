@@ -25,8 +25,8 @@ export default defineComponent({
   name: 'SizeField',
   setup () {
     const store = useStore<RootState>();
-    const size = computed({
-      get: (): number => {
+    const size = computed<number>({
+      get: () => {
         return store.state.qrCodeGenerator.size;
       },
       set: (val) => {

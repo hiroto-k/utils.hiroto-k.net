@@ -16,8 +16,8 @@ export default defineComponent({
   name: 'BackGroundField',
   setup () {
     const store = useStore<RootState>();
-    const backGround = computed({
-      get: (): string => {
+    const backGround = computed<string>({
+      get: () => {
         return store.state.qrCodeGenerator.backGround;
       },
       set: (val) => {
