@@ -13,7 +13,7 @@
         <b-radio
           :native-value="renderAsForm.value"
           v-model="renderAs"
-          name="name"
+          name="render-as"
         >
           {{ renderAsForm.text }}
         </b-radio>

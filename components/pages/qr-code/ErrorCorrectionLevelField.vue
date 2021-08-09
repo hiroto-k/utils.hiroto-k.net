@@ -13,7 +13,7 @@
         <b-radio
           :native-value="levelForm.value"
           v-model="level"
-          name="name"
+          name="error-correction-level"
         >
           {{ levelForm.text }}
         </b-radio>
