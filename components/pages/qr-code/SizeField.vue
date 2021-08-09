@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, reactive, useStore } from '@nuxtjs/composition-api';
 import { RootState } from '~/types';
 
 export default defineComponent({
@@ -34,7 +34,7 @@ export default defineComponent({
       },
     });
 
-    const sliderTicks = computed<number[]>(() => [0, 100, 200, 300, 400, 500]);
+    const sliderTicks = reactive<number[]>([0, 100, 200, 300, 400, 500]);
 
     return {
       size,

@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useMeta, useStore } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
 import { Link, RootState } from '~/types';
 
@@ -22,8 +22,8 @@ export default defineComponent({
   head: {},
   setup () {
     const store = useStore<RootState>();
-    const title = computed<string>(() => '列車番号メモ');
-    const description = computed<string>(() => '入出場，車輪転削などの予定臨や，パターンが概ね決まっている臨工や臨単の列車番号のメモ．');
+    const title = ref<string>('列車番号メモ');
+    const description = ref<string>('入出場，車輪転削などの予定臨や，パターンが概ね決まっている臨工や臨単の列車番号のメモ．');
     const trainNumberContentPageLinks = computed<Link[]>(() => store.getters['pageLinks/trainNumberContentPageLinks']);
 
     useMeta(() => ({

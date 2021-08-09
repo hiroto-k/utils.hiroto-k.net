@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useMeta, useStore } from '@nuxtjs/composition-api';
 import QrCodeVue from 'qrcode.vue';
 import ValueField from '~/components/pages/qr-code/ValueField';
 import SizeField from '~/components/pages/qr-code/SizeField';
@@ -57,8 +57,8 @@ import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue, RootState } from
 export default defineComponent({
   head: {},
   setup () {
-    const title = computed<string>(() => 'QRコード生成');
-    const description = computed<string>(() => 'ブラウザでQRコードを生成．');
+    const title = ref<string>('QRコード生成');
+    const description = ref<string>('ブラウザでQRコードを生成．');
 
     useMeta(() => ({
       title: title.value,

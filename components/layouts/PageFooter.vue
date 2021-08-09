@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
 import { Link, RootState } from '~/types';
 
 export default defineComponent({
@@ -40,8 +40,8 @@ export default defineComponent({
   setup () {
     const store = useStore<RootState>();
     const allPageLinks = computed<Link[]>(() => store.getters['pageLinks/allPageLinks']);
-    const footerTitle = computed<string>(() => '© 2019 hiroxto');
-    const footerLinksTitle = computed<string>(() => 'Page links');
+    const footerTitle = ref<string>('© 2019 hiroxto');
+    const footerLinksTitle = ref<string>('Page links');
 
     return {
       allPageLinks,

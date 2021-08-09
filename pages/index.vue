@@ -14,15 +14,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useMeta, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useMeta, useStore } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
 import { Link, PageLinksState } from '~/types';
 
 export default defineComponent({
   head: {},
   setup () {
-    const title = computed<string>(() => 'utils.hiroxto.net');
-    const description = computed<string>(() => 'Utility site for me.');
+    const title = ref<string>('utils.hiroxto.net');
+    const description = ref<string>('Utility site for me.');
     const linksStore = useStore<PageLinksState>();
     const pageLinks = computed<Link[]>(() => linksStore.getters['pageLinks/pageLinks']);
 
