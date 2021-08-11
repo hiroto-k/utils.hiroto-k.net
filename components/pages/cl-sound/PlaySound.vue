@@ -6,7 +6,7 @@
         type="is-info"
         icon-left="contactless-payment"
         rounded
-        @click="playSound"
+        @click="playSuccessTone"
       >
         Play Success Tone
       </b-button>
@@ -21,7 +21,7 @@ export default defineComponent({
   name: 'PlaySound',
   setup () {
     const audioContext = computed<AudioContext>(() => new AudioContext());
-    const playSound = (): void => {
+    const playSuccessTone = (): void => {
       const oscillator = audioContext.value.createOscillator();
       oscillator.type = 'sine';
       oscillator.frequency.value = 1500;
@@ -35,7 +35,7 @@ export default defineComponent({
 
     return {
       audioContext,
-      playSound,
+      playSuccessTone,
     };
   },
 });
