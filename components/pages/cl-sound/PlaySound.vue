@@ -3,7 +3,7 @@
     <div class="buttons">
       <b-button
         size="is-medium"
-        type="is-info"
+        type="is-success"
         icon-left="contactless-payment"
         rounded
         @click="playSuccessTone"
