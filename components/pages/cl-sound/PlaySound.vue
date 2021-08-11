@@ -28,10 +28,7 @@ export default defineComponent({
       osc.frequency.value = 1500;
       osc.connect(ctx.destination);
       osc.start();
-
-      window.setTimeout(() => {
-        osc.stop();
-      }, 500);
+      osc.stop(0.5);
     };
 
     return {
