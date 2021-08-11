@@ -8,7 +8,7 @@
         rounded
         @click="playSound"
       >
-        Play Sound
+        Play Success Tone
       </b-button>
     </div>
   </div>
