@@ -22,11 +22,12 @@ export default defineComponent({
   setup () {
     const audioContext = computed<AudioContext>(() => new AudioContext());
     const playSuccessTone = (): void => {
-      const oscillator = audioContext.value.createOscillator();
+      const ctx = new AudioContext();
+      const oscillator = ctx.createOscillator();
       oscillator.type = 'sine';
       oscillator.frequency.value = 1500;
-      oscillator.connect(audioContext.value.destination);
-      oscillator.start(0);
+      oscillator.connect(ctx.destination);
+      oscillator.start();
 
       window.setTimeout(() => {
         oscillator.stop();
