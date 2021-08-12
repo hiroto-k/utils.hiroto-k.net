@@ -1,23 +1,15 @@
 <template>
-  <b-field>
+  <b-field label="誤り訂正レベル">
     <div class="block">
-      <label class="label">
-        誤り訂正レベル
-      </label>
-
-      <div
+      <b-radio
         v-for="(levelForm, levelFormsKey) in levelForms"
         :key="levelFormsKey"
-        class="field"
+        :native-value="levelForm.value"
+        v-model="level"
+        name="error-correction-level"
       >
-        <b-radio
-          :native-value="levelForm.value"
-          v-model="level"
-          name="error-correction-level"
-        >
-          {{ levelForm.text }}
-        </b-radio>
-      </div>
+        {{ levelForm.text }}
+      </b-radio>
     </div>
   </b-field>
 </template>

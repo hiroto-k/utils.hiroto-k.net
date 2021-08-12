@@ -1,23 +1,15 @@
 <template>
-  <b-field>
+  <b-field label="レンダリング方式">
     <div class="block">
-      <label class="label">
-        レンダリング方式
-      </label>
-
-      <div
+      <b-radio
         v-for="(renderAsForm, renderAsFormsKey) in renderAsForms"
         :key="renderAsFormsKey"
-        class="field"
+        :native-value="renderAsForm.value"
+        v-model="renderAs"
+        name="render-as"
       >
-        <b-radio
-          :native-value="renderAsForm.value"
-          v-model="renderAs"
-          name="render-as"
-        >
-          {{ renderAsForm.text }}
-        </b-radio>
-      </div>
+        {{ renderAsForm.text }}
+      </b-radio>
     </div>
   </b-field>
 </template>
