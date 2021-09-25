@@ -5,6 +5,8 @@ export interface PageLinksState {
   trainNumberPageLink: Link;
   trainNumber20180317PageLink: Link;
   trainNumber20190316PageLink: Link;
+  trainNumber20200314PageLink: Link;
+  trainNumber20210313PageLink: Link;
   trainNumberCalcPageLink: Link;
   qrCodeGeneratorPageLink: Link;
   contactlessSoundPage: Link;
