@@ -9,15 +9,15 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import TrainNumberPage from '~/components/pages/train-number/TrainNumberPage';
-import contentSource from '~/assets/train-number/2019-03-16.md';
+import contentSource from '~/assets/train-number/2021-03-13.md';
 
 export default defineComponent({
-  name: 'TrainNumber20190316Page',
+  name: 'TrainNumber20210313Page',
   components: {
     TrainNumberPage,
   },
   setup () {
-    const title = ref<string>('2019年3月16日 改正');
+    const title = ref<string>('2021年3月13日 改正');
     const source = computed<string>(() => contentSource);
 
     return {
