@@ -62,6 +62,8 @@ export const getters: GetterTree<PageLinksState, RootState> = {
     return [
       state.trainNumber20180317PageLink,
       state.trainNumber20190316PageLink,
+      state.trainNumber20200314PageLink,
+      state.trainNumber20210313PageLink,
     ];
   },
 };
