@@ -17,7 +17,7 @@
     "@nuxtjs/composition-api": "0.29.3",
     "cross-env": "7.0.3",
     "nuxt": "2.15.8",
-    "nuxt-buefy": "0.4.13",
+    "nuxt-buefy": "0.4.14",
     "ts-node": "10.2.1"
   },
   "devDependencies": {
