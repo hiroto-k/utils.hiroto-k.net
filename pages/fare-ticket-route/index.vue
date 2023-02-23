@@ -111,6 +111,11 @@
             <p>
               路線数: {{ routeIndex + 1 }}
             </p>
+            <button
+              @click="deleteRoute(routeIndex)"
+              class="delete"
+              tabindex="-1"
+            ></button>
           </div>
           <div class="column">
             <b-field label="路線名">
@@ -132,13 +137,6 @@
                 @keydown.shift.enter.native="addRoute(routeIndex)"
               ></b-input>
             </b-field>
-          </div>
-          <div class="column is-1">
-            <button
-              @click="deleteRoute(routeIndex)"
-              class="delete"
-              tabindex="-1"
-            ></button>
           </div>
         </div>
       </div>
