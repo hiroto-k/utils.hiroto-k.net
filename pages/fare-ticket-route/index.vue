@@ -11,6 +11,12 @@
         <h3>
           設定
         </h3>
+        <div class="buttons">
+          <b-button @click="removeAllSettings" type="is-danger">
+            全ての設定を削除
+          </b-button>
+        </div>
+
         <div class="columns">
           <div class="column">
             <b-field label="券種">
@@ -133,6 +139,11 @@ export default defineComponent({
     const date = ref<string>('');
     const departure = ref<string>('');
     const destination = ref<string>('');
+    const removeAllSettings = () => {
+      [type, date, departure, destination].forEach(ref => {
+        ref.value = '';
+      });
+    };
     const createRoute = (): Route => {
       return { line: '', station: '' };
     };
@@ -179,6 +190,7 @@ export default defineComponent({
       date,
       departure,
       destination,
+      removeAllSettings,
       createRoute,
       routes,
       addRoute,
