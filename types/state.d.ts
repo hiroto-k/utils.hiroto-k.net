@@ -10,6 +10,7 @@ export interface PageLinksState {
   trainNumberCalcPageLink: Link;
   qrCodeGeneratorPageLink: Link;
   contactlessSoundPage: Link;
+  fareTicketRoute: Link;
 }
 
 export interface QrCodeGeneratorState {
