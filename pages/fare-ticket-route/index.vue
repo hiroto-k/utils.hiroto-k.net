@@ -146,6 +146,9 @@
           <b-button @click="setUndefinedDate" type="is-info is-light">
             利用日未定
           </b-button>
+          <b-button @click="setSkipDate" type="is-info is-light">
+            {{ skipDate ? '利用日非省略' : '利用日省略' }}
+          </b-button>
           <b-button @click="addRoute(-1)" type="is-info">
             経路追加
           </b-button>
@@ -198,15 +201,18 @@ export default defineComponent({
     const types = [
       '片道乗車券',
       '往復乗車券',
-      '連続乗車券',
+      '連続乗車券 (連続1)',
+      '連続乗車券 (連続2)',
     ];
     const type = ref<string>('片道乗車券');
     const month = ref<string>('');
     const day = ref<string>('');
+    const skipDate = ref<boolean>(false);
     const departure = ref<string>('');
     const destination = ref<string>('');
     const removeAllSettings = () => {
       type.value = types[0];
+      skipDate.value = false;
       [month, day, departure, destination].forEach(ref => {
         ref.value = '';
       });
@@ -229,6 +235,16 @@ export default defineComponent({
       const undefinedDate = '     ';
       month.value = undefinedDate;
       day.value = undefinedDate;
+    };
+    const setSkipDate = () => {
+      skipDate.value = !skipDate.value;
+      if (skipDate.value) {
+        month.value = '省略';
+        day.value = '省略';
+      } else {
+        month.value = '';
+        day.value = '';
+      }
     };
     const reverseRoutes = () => {
       const newDeparture = destination.value;
@@ -267,7 +283,11 @@ export default defineComponent({
       return output.trim();
     };
     const output = computed<string>(() => {
-      const header = `${type.value}\n\n利用開始日: ${month.value}月${day.value}日\n\n区間: ${departure.value}→${destination.value}`;
+      const header = [
+        type.value,
+        skipDate.value ? null : `利用開始日: ${month.value}月${day.value}日`,
+        `区間: ${departure.value}→${destination.value}`,
+      ].filter((el) => el != null).join('\n\n');
       const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
       const content = `経由: ${routesOutput}`;
       const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
@@ -302,6 +322,7 @@ export default defineComponent({
       type,
       month,
       day,
+      skipDate,
       departure,
       destination,
       removeAllSettings,
@@ -310,6 +331,7 @@ export default defineComponent({
       notes,
       setDate,
       setUndefinedDate,
+      setSkipDate,
       reverseRoutes,
       addRoute,
       deleteRoute,
