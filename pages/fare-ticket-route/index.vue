@@ -133,6 +133,9 @@ export default defineComponent({
       return { line: '', station: '' };
     };
     const routes = ref<Route[]>([createRoute()]);
+    const valuedRoutes = computed<Route[]>(() => {
+      return routes.value.filter((route) => route.line.trim() !== '');
+    });
     const addRoute = () => routes.value.push(createRoute());
     const removeEmptyRoutes = () => {
       const newRoutes = routes.value.filter(route => {
@@ -146,8 +149,14 @@ export default defineComponent({
         addRoute();
       }
     };
+    const createRoutesOutput = () => {
+      const exceptLastRoutes = valuedRoutes.value.slice(0, valuedRoutes.value.length - 1);
+      const lastRoute = valuedRoutes.value.slice(-1)[0];
+      const output = exceptLastRoutes.map(route => `${route.line} (${route.station})`).join(' ') + ` ${lastRoute.line}`;
+      return output.trim();
+    };
     const output = computed<string>(() => {
-      const routesOutput = routes.value.map(route => `${route.line} (${route.station})`).join(' ');
+      const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
       return `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}\n\n経由: ${routesOutput}`;
     });
 
