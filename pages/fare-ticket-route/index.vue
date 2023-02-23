@@ -143,6 +143,12 @@
           備考
         </h3>
 
+        <div class="buttons">
+          <b-button @click="notes = ''" type="is-danger">
+            クリア
+          </b-button>
+        </div>
+
         <b-field label="備考">
           <b-input
             v-model="notes"
