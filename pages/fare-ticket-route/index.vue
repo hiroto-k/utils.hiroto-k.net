@@ -191,7 +191,8 @@ export default defineComponent({
     const departure = ref<string>('');
     const destination = ref<string>('');
     const removeAllSettings = () => {
-      [type, month, day, departure, destination].forEach(ref => {
+      type.value = types[0];
+      [month, day, departure, destination].forEach(ref => {
         ref.value = '';
       });
     };
