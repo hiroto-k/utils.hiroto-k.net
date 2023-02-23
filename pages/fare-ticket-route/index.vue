@@ -97,7 +97,11 @@
             </b-field>
           </div>
           <div class="column is-1">
-            <button class="delete" tabindex="-1"></button>
+            <button
+              @click="deleteRoute(routeIndex)"
+              class="delete"
+              tabindex="-1"
+            ></button>
           </div>
         </div>
       </div>
@@ -137,6 +141,7 @@ export default defineComponent({
       return routes.value.filter((route) => route.line.trim() !== '');
     });
     const addRoute = () => routes.value.push(createRoute());
+    const deleteRoute = (index: number) => routes.value.splice(index, 1);
     const removeEmptyRoutes = () => {
       const newRoutes = routes.value.filter(route => {
         return route.line.trim() !== '' || route.station.trim() !== '';
@@ -177,6 +182,7 @@ export default defineComponent({
       createRoute,
       routes,
       addRoute,
+      deleteRoute,
       removeEmptyRoutes,
       removeAllRoutes,
       onKeyupTab,
