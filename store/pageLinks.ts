@@ -38,6 +38,10 @@ export const state = (): PageLinksState => ({
     title: 'EMVコンタクトレスのサウンドをWeb Audio APIで再生',
     to: '/cl-sound',
   },
+  fareTicketRoute: {
+    title: '乗車券の経路作成',
+    to: '/fare-ticket-route',
+  },
 });
 
 export const getters: GetterTree<PageLinksState, RootState> = {
@@ -48,6 +52,7 @@ export const getters: GetterTree<PageLinksState, RootState> = {
       state.trainNumberCalcPageLink,
       state.qrCodeGeneratorPageLink,
       state.contactlessSoundPage,
+      state.fareTicketRoute,
     ];
   },
   pageLinks (state: PageLinksState): Link[] {
@@ -56,6 +61,7 @@ export const getters: GetterTree<PageLinksState, RootState> = {
       state.trainNumberCalcPageLink,
       state.qrCodeGeneratorPageLink,
       state.contactlessSoundPage,
+      state.fareTicketRoute,
     ];
   },
   trainNumberContentPageLinks (state: PageLinksState): Link[] {
