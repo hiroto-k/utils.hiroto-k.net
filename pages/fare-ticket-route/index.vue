@@ -12,13 +12,16 @@
           設定
         </h3>
         <div class="buttons">
+          <b-button @click="setUndefinedDate" type="is-info is-light">
+            利用日未定
+          </b-button>
           <b-button @click="removeAllSettings" type="is-danger">
             全ての設定を削除
           </b-button>
         </div>
 
         <div class="columns">
-          <div class="column">
+          <div class="column is-2">
             <b-field label="券種">
               <b-select
                 v-model="type"
@@ -35,13 +38,28 @@
               </b-select>
             </b-field>
           </div>
-          <div class="column">
+          <div class="column is-1">
+            <b-field label="利用開始月">
+              <b-input
+                v-model="month"
+                type="text"
+                placeholder="月"
+              ></b-input>
+              <p class="control">
+                <span class="button is-static">月</span>
+              </p>
+            </b-field>
+          </div>
+          <div class="column is-1">
             <b-field label="利用開始日">
               <b-input
-                v-model="date"
+                v-model="day"
                 type="text"
-                placeholder="利用開始日"
+                placeholder="日"
               ></b-input>
+              <p class="control">
+                <span class="button is-static">日</span>
+              </p>
             </b-field>
           </div>
           <div class="column">
@@ -169,11 +187,12 @@ export default defineComponent({
       '連続乗車券',
     ];
     const type = ref<string>('片道乗車券');
-    const date = ref<string>('');
+    const month = ref<string>('');
+    const day = ref<string>('');
     const departure = ref<string>('');
     const destination = ref<string>('');
     const removeAllSettings = () => {
-      [type, date, departure, destination].forEach(ref => {
+      [type, month, day, departure, destination].forEach(ref => {
         ref.value = '';
       });
     };
@@ -185,6 +204,11 @@ export default defineComponent({
     const valuedRoutes = computed<Route[]>(() => {
       return routes.value.filter((route) => route.line.trim() !== '');
     });
+    const setUndefinedDate = () => {
+      const undefinedDate = '     ';
+      month.value = undefinedDate;
+      day.value = undefinedDate;
+    };
     const reverseRoutes = () => {
       const newDeparture = destination.value;
       destination.value = departure.value;
@@ -222,7 +246,7 @@ export default defineComponent({
       return output.trim();
     };
     const output = computed<string>(() => {
-      const header = `${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}`;
+      const header = `${type.value}\n\n利用開始日: ${month.value}月${day.value}日\n\n区間: ${departure.value}→${destination.value}`;
       const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
       const content = `経由: ${routesOutput}`;
       const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
@@ -241,13 +265,15 @@ export default defineComponent({
       description,
       types,
       type,
-      date,
+      month,
+      day,
       departure,
       destination,
       removeAllSettings,
       createRoute,
       routes,
       notes,
+      setUndefinedDate,
       reverseRoutes,
       addRoute,
       deleteRoute,
