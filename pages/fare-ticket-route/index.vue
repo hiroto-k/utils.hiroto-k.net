@@ -159,6 +159,9 @@
         <h3>
           出力
         </h3>
+        <b-button @click="copyOutput" size="is-small">
+          Copy
+        </b-button>
         <pre v-text="output"></pre>
       </div>
     </div>
@@ -167,6 +170,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
+import { SnackbarProgrammatic as Snackbar } from 'buefy';
 
 interface Route {
   line: string;
@@ -250,6 +254,20 @@ export default defineComponent({
       const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
       return `${header}\n\n${content}\n\n${footer}`.trim();
     });
+    const copyOutput = () => {
+      navigator.clipboard.writeText(output.value)
+        .then((t) => {
+          Snackbar.open({
+            message: 'Copied!',
+            pauseOnHover: true,
+            type: 'is-link',
+          });
+          return t;
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    };
 
     useMeta(() => ({
       title: title.value,
@@ -279,6 +297,7 @@ export default defineComponent({
       removeAllRoutes,
       onKeyupTab,
       output,
+      copyOutput,
     };
   },
   components: {
