@@ -73,6 +73,9 @@
           <b-button @click="addRoute(-1)" type="is-info">
             追加
           </b-button>
+          <b-button @click="reverseRoutes" type="is-info is-light">
+            逆向き
+          </b-button>
           <b-button @click="removeEmptyRoutes" type="is-danger is-light">
             空の経路を削除
           </b-button>
@@ -167,6 +170,16 @@ export default defineComponent({
     const valuedRoutes = computed<Route[]>(() => {
       return routes.value.filter((route) => route.line.trim() !== '');
     });
+    const reverseRoutes = () => {
+      const newDeparture = destination.value;
+      destination.value = departure.value;
+      departure.value = newDeparture;
+      removeEmptyRoutes();
+      routes.value = routes.value.reverse().map((route, index, orig) => {
+        route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
+        return route;
+      });
+    };
     const addRoute = (index: number) => {
       if (index <= -1) {
         routes.value.push(createRoute());
@@ -216,6 +229,7 @@ export default defineComponent({
       removeAllSettings,
       createRoute,
       routes,
+      reverseRoutes,
       addRoute,
       deleteRoute,
       removeEmptyRoutes,
