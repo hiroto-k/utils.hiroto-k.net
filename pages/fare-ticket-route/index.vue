@@ -118,9 +118,6 @@
       </div>
 
       <div class="content notes">
-        <h3>
-          備考
-        </h3>
         <b-field label="備考">
           <b-input
             v-model="notes"
@@ -130,9 +127,9 @@
         </b-field>
       </div>
 
-      <div class="content notes">
+      <div class="content actions">
         <h3>
-          入力操作
+          操作
         </h3>
 
         <div class="buttons">
