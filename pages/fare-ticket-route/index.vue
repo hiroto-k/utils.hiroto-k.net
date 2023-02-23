@@ -147,7 +147,8 @@ export default defineComponent({
       }
     };
     const output = computed<string>(() => {
-      return `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}\n\n`;
+      const routesOutput = routes.value.map(route => `${route.line} (${route.station})`).join(' ');
+      return `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}\n\n経由: ${routesOutput}`;
     });
 
     useMeta(() => ({
