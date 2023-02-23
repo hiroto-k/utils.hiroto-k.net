@@ -134,6 +134,15 @@
         </h3>
 
         <div class="buttons">
+          <b-button @click="setDate(0)" type="is-info is-light">
+            本日
+          </b-button>
+          <b-button @click="setDate(1)" type="is-info is-light">
+            明日
+          </b-button>
+          <b-button @click="setDate(2)" type="is-info is-light">
+            明後日
+          </b-button>
           <b-button @click="setUndefinedDate" type="is-info is-light">
             利用日未定
           </b-button>
@@ -210,6 +219,12 @@ export default defineComponent({
     const valuedRoutes = computed<Route[]>(() => {
       return routes.value.filter((route) => route.line.trim() !== '');
     });
+    const setDate = (addDate: number) => {
+      const today = new Date();
+      today.setDate(today.getDate() + addDate);
+      month.value = (today.getMonth() + 1).toString();
+      day.value = today.getDate().toString();
+    };
     const setUndefinedDate = () => {
       const undefinedDate = '     ';
       month.value = undefinedDate;
@@ -293,6 +308,7 @@ export default defineComponent({
       createRoute,
       routes,
       notes,
+      setDate,
       setUndefinedDate,
       reverseRoutes,
       addRoute,
