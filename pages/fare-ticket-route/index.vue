@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div class="content routes block">
+      <div class="content routes">
         <h3>
           経路
         </h3>
@@ -125,7 +125,21 @@
         </div>
       </div>
 
-      <div class="content routes">
+      <div class="content notes">
+        <h3>
+          備考
+        </h3>
+
+        <b-field label="備考">
+          <b-input
+            v-model="notes"
+            type="textarea"
+            placeholder="備考"
+          ></b-input>
+        </b-field>
+      </div>
+
+      <div class="content output">
         <h3>
           出力
         </h3>
@@ -167,6 +181,7 @@ export default defineComponent({
       return { line: '', station: '' };
     };
     const routes = ref<Route[]>([createRoute()]);
+    const notes = ref<string>('');
     const valuedRoutes = computed<Route[]>(() => {
       return routes.value.filter((route) => route.line.trim() !== '');
     });
@@ -207,8 +222,11 @@ export default defineComponent({
       return output.trim();
     };
     const output = computed<string>(() => {
+      const header = `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}`;
       const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
-      return `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}\n\n経由: ${routesOutput}`;
+      const content = `経由: ${routesOutput}`;
+      const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
+      return `${header}\n\n${content}\n\n${footer}`.trim();
     });
 
     useMeta(() => ({
@@ -229,6 +247,7 @@ export default defineComponent({
       removeAllSettings,
       createRoute,
       routes,
+      notes,
       reverseRoutes,
       addRoute,
       deleteRoute,
