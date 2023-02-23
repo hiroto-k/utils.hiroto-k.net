@@ -11,15 +11,6 @@
         <h3>
           設定
         </h3>
-        <div class="buttons">
-          <b-button @click="setUndefinedDate" type="is-info is-light">
-            利用日未定
-          </b-button>
-          <b-button @click="removeAllSettings" type="is-danger">
-            全ての設定を削除
-          </b-button>
-        </div>
-
         <div class="columns">
           <div class="column is-2">
             <b-field label="券種">
@@ -84,20 +75,6 @@
         <h3>
           経路
         </h3>
-        <div class="buttons">
-          <b-button @click="addRoute(-1)" type="is-info">
-            追加
-          </b-button>
-          <b-button @click="reverseRoutes" type="is-info is-light">
-            逆向き
-          </b-button>
-          <b-button @click="removeEmptyRoutes" type="is-danger is-light">
-            空の経路を削除
-          </b-button>
-          <b-button @click="removeAllRoutes" type="is-danger">
-            全ての経路を削除
-          </b-button>
-        </div>
 
         <div
           v-for="(route, routeIndex) in routes"
@@ -142,13 +119,6 @@
         <h3>
           備考
         </h3>
-
-        <div class="buttons">
-          <b-button @click="notes = ''" type="is-danger">
-            クリア
-          </b-button>
-        </div>
-
         <b-field label="備考">
           <b-input
             v-model="notes"
@@ -156,6 +126,36 @@
             placeholder="備考"
           ></b-input>
         </b-field>
+      </div>
+
+      <div class="content notes">
+        <h3>
+          入力操作
+        </h3>
+
+        <div class="buttons">
+          <b-button @click="setUndefinedDate" type="is-info is-light">
+            利用日未定
+          </b-button>
+          <b-button @click="addRoute(-1)" type="is-info">
+            経路追加
+          </b-button>
+          <b-button @click="reverseRoutes" type="is-info is-light">
+            逆向き
+          </b-button>
+          <b-button @click="removeEmptyRoutes" type="is-danger is-light">
+            空経路削除
+          </b-button>
+          <b-button @click="removeAllSettings" type="is-danger">
+            全設定クリア
+          </b-button>
+          <b-button @click="removeAllRoutes" type="is-danger">
+            全経路クリア
+          </b-button>
+          <b-button @click="notes = ''" type="is-danger">
+            備考クリア
+          </b-button>
+        </div>
       </div>
 
       <div class="content output">
