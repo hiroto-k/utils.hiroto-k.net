@@ -70,7 +70,7 @@
           経路
         </h3>
         <div class="buttons">
-          <b-button @click="addRoute" type="is-info">
+          <b-button @click="addRoute(-1)" type="is-info">
             追加
           </b-button>
           <b-button @click="removeEmptyRoutes" type="is-danger is-light">
@@ -98,6 +98,7 @@
                 type="text"
                 placeholder="路線名"
                 @keydown.tab.native="onKeyupTab(routeIndex)"
+                @keydown.shift.enter.native="addRoute(routeIndex)"
               ></b-input>
             </b-field>
           </div>
@@ -107,6 +108,7 @@
                 v-model="route.station"
                 type="text"
                 placeholder="接続駅"
+                @keydown.shift.enter.native="addRoute(routeIndex)"
               ></b-input>
             </b-field>
           </div>
@@ -165,7 +167,13 @@ export default defineComponent({
     const valuedRoutes = computed<Route[]>(() => {
       return routes.value.filter((route) => route.line.trim() !== '');
     });
-    const addRoute = () => routes.value.push(createRoute());
+    const addRoute = (index: number) => {
+      if (index <= -1) {
+        routes.value.push(createRoute());
+      } else {
+        routes.value.splice(index + 1, 0, createRoute());
+      }
+    };
     const deleteRoute = (index: number) => routes.value.splice(index, 1);
     const removeEmptyRoutes = () => {
       const newRoutes = routes.value.filter(route => {
@@ -176,7 +184,7 @@ export default defineComponent({
     const removeAllRoutes = () => (routes.value = [createRoute()]);
     const onKeyupTab = (index: number) => {
       if (routes.value.length - 1 === index) {
-        addRoute();
+        addRoute(-1);
       }
     };
     const createRoutesOutput = () => {
