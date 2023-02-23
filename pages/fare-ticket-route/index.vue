@@ -222,7 +222,7 @@ export default defineComponent({
       return output.trim();
     };
     const output = computed<string>(() => {
-      const header = `券種: ${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}`;
+      const header = `${type.value}\n\n利用開始日: ${date.value}\n\n区間: ${departure.value}→${destination.value}`;
       const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
       const content = `経由: ${routesOutput}`;
       const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
