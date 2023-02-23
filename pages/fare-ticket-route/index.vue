@@ -20,11 +20,19 @@
         <div class="columns">
           <div class="column">
             <b-field label="券種">
-              <b-input
+              <b-select
                 v-model="type"
-                type="text"
-                placeholder="券種"
-              ></b-input>
+                placeholder="乗車券の種類を選択"
+                expanded
+              >
+                <option
+                  v-for="(option, typesIndex) in types"
+                  :value="option"
+                  :key="typesIndex"
+                >
+                  {{ option }}
+                </option>
+              </b-select>
             </b-field>
           </div>
           <div class="column">
@@ -135,7 +143,13 @@ export default defineComponent({
   setup () {
     const title = ref<string>('乗車券の経路作成');
     const description = ref<string>('複雑な経路の乗車券を窓口で作る際に紙に書く経路を作るツール');
-    const type = ref<string>('');
+
+    const types = [
+      '片道乗車券',
+      '往復乗車券',
+      '連続乗車券',
+    ];
+    const type = ref<string>('片道乗車券');
     const date = ref<string>('');
     const departure = ref<string>('');
     const destination = ref<string>('');
@@ -186,6 +200,7 @@ export default defineComponent({
     return {
       title,
       description,
+      types,
       type,
       date,
       departure,
