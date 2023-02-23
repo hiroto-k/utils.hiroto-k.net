@@ -38,8 +38,8 @@
               </b-select>
             </b-field>
           </div>
-          <div class="column is-1">
-            <b-field label="利用開始月">
+          <div class="column is-2">
+            <b-field label="利用開始日">
               <b-input
                 v-model="month"
                 type="text"
@@ -48,10 +48,7 @@
               <p class="control">
                 <span class="button is-static">月</span>
               </p>
-            </b-field>
-          </div>
-          <div class="column is-1">
-            <b-field label="利用開始日">
+
               <b-input
                 v-model="day"
                 type="text"
