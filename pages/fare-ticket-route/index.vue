@@ -35,6 +35,7 @@
                 v-model="month"
                 type="text"
                 placeholder="月"
+                :disabled="skipDate"
               ></b-input>
               <p class="control">
                 <span class="button is-static">月</span>
@@ -44,6 +45,7 @@
                 v-model="day"
                 type="text"
                 placeholder="日"
+                :disabled="skipDate"
               ></b-input>
               <p class="control">
                 <span class="button is-static">日</span>
@@ -226,15 +228,31 @@ export default defineComponent({
       return routes.value.filter((route) => route.line.trim() !== '');
     });
     const setDate = (addDate: number) => {
-      const today = new Date();
-      today.setDate(today.getDate() + addDate);
-      month.value = (today.getMonth() + 1).toString();
-      day.value = today.getDate().toString();
+      if (skipDate.value) {
+        Snackbar.open({
+          message: '利用日省略が設定されています。',
+          pauseOnHover: true,
+          type: 'is-info',
+        });
+      } else {
+        const today = new Date();
+        today.setDate(today.getDate() + addDate);
+        month.value = (today.getMonth() + 1).toString();
+        day.value = today.getDate().toString();
+      }
     };
     const setUndefinedDate = () => {
-      const undefinedDate = '     ';
-      month.value = undefinedDate;
-      day.value = undefinedDate;
+      if (skipDate.value) {
+        Snackbar.open({
+          message: '利用日省略が設定されています。',
+          pauseOnHover: true,
+          type: 'is-info',
+        });
+      } else {
+        const undefinedDate = '     ';
+        month.value = undefinedDate;
+        day.value = undefinedDate;
+      }
     };
     const setSkipDate = () => {
       skipDate.value = !skipDate.value;
