@@ -185,11 +185,8 @@
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { SnackbarProgrammatic as Snackbar } from 'buefy';
-
-interface Route {
-  line: string;
-  station: string;
-}
+import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
+import { Route } from '~/types';
 
 export default defineComponent({
   head: {},
@@ -291,19 +288,13 @@ export default defineComponent({
         addRoute(-1);
       }
     };
-    const createRoutesOutput = () => {
-      const exceptLastRoutes = valuedRoutes.value.slice(0, valuedRoutes.value.length - 1);
-      const lastRoute = valuedRoutes.value.slice(-1)[0];
-      const output = exceptLastRoutes.map(route => `${route.line} (${route.station})`).join(' ') + ` ${lastRoute.line}`;
-      return output.trim();
-    };
     const output = computed<string>(() => {
       const header = [
         type.value,
         skipDate.value ? null : `利用開始日: ${month.value}月${day.value}日`,
         `区間: ${departure.value}→${destination.value}`,
       ].filter((el) => el != null).join('\n\n');
-      const routesOutput = valuedRoutes.value.length === 0 ? '' : createRoutesOutput();
+      const routesOutput = new DefaultFormatter(valuedRoutes.value).format();
       const content = `経由: ${routesOutput}`;
       const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
       return `${header}\n\n${content}\n\n${footer}`.trim();
