@@ -1,4 +1,5 @@
 export * from './state';
+export * from './fare-ticket-route';
 
 export interface Link {
   title: string;
