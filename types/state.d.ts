@@ -1,17 +1,4 @@
-import { Link, QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue } from './index';
-
-export interface PageLinksState {
-  topPageLink: Link;
-  trainNumberPageLink: Link;
-  trainNumber20180317PageLink: Link;
-  trainNumber20190316PageLink: Link;
-  trainNumber20200314PageLink: Link;
-  trainNumber20210313PageLink: Link;
-  trainNumberCalcPageLink: Link;
-  qrCodeGeneratorPageLink: Link;
-  contactlessSoundPage: Link;
-  fareTicketRoute: Link;
-}
+import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue } from './index';
 
 export interface QrCodeGeneratorState {
   value: string;
@@ -23,6 +10,5 @@ export interface QrCodeGeneratorState {
 }
 
 export interface RootState {
-  pageLinks: PageLinksState;
   qrCodeGenerator: QrCodeGeneratorState;
 }
