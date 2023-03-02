@@ -32,14 +32,34 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
-import { Link, RootState } from '~/types';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
+import { Link } from '~/types';
 
 export default defineComponent({
   name: 'PageFooter',
   setup () {
-    const store = useStore<RootState>();
-    const allPageLinks = computed<Link[]>(() => store.getters['pageLinks/allPageLinks']);
+    const allPageLinks = ref<Link[]>([
+      {
+        title: '列車番号メモ',
+        to: '/train-number',
+      },
+      {
+        title: '列車番号から列車種別を計算',
+        to: '/train-number-calc',
+      },
+      {
+        title: 'QRコード生成',
+        to: '/qr-code',
+      },
+      {
+        title: 'EMVコンタクトレスのサウンドをWeb Audio APIで再生',
+        to: '/cl-sound',
+      },
+      {
+        title: '乗車券の経路作成',
+        to: '/fare-ticket-route',
+      },
+    ]);
     const footerTitle = ref<string>('© 2019 hiroxto');
     const footerLinksTitle = ref<string>('Page links');
 

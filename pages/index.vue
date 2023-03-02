@@ -14,17 +14,37 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useMeta, useStore } from '@nuxtjs/composition-api';
+import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
-import { Link, PageLinksState } from '~/types';
+import { Link } from '~/types';
 
 export default defineComponent({
   head: {},
   setup () {
     const title = ref<string>('utils.hiroxto.net');
     const description = ref<string>('Utility site for me.');
-    const linksStore = useStore<PageLinksState>();
-    const pageLinks = computed<Link[]>(() => linksStore.getters['pageLinks/pageLinks']);
+    const pageLinks = ref<Link[]>([
+      {
+        title: '列車番号メモ',
+        to: '/train-number',
+      },
+      {
+        title: '列車番号から列車種別を計算',
+        to: '/train-number-calc',
+      },
+      {
+        title: 'QRコード生成',
+        to: '/qr-code',
+      },
+      {
+        title: 'EMVコンタクトレスのサウンドをWeb Audio APIで再生',
+        to: '/cl-sound',
+      },
+      {
+        title: '乗車券の経路作成',
+        to: '/fare-ticket-route',
+      },
+    ]);
 
     useMeta(() => ({
       title: title.value,
