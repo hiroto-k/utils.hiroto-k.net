@@ -8,175 +8,174 @@
       </h2>
 
       <div class="content settings">
-        <h3>
-          設定
-        </h3>
         <div class="columns">
-          <div class="column is-2">
-            <b-field label="券種">
-              <b-select
-                v-model="type"
-                placeholder="乗車券の種類を選択"
-                expanded
+          <div class="column">
+            <div class="settings">
+              <h3>設定</h3>
+              <div class="columns">
+                <div class="column is-2">
+                  <b-field label="券種">
+                    <b-select
+                      v-model="type"
+                      placeholder="乗車券の種類を選択"
+                      expanded
+                    >
+                      <option
+                        v-for="(option, typesIndex) in types"
+                        :value="option"
+                        :key="typesIndex"
+                      >
+                        {{ option }}
+                      </option>
+                    </b-select>
+                  </b-field>
+                </div>
+                <div class="column is-2">
+                  <b-field label="利用開始日">
+                    <b-input
+                      v-model="month"
+                      type="text"
+                      placeholder="月"
+                      :disabled="skipDate"
+                    ></b-input>
+                    <p class="control">
+                      <span class="button is-static">月</span>
+                    </p>
+
+                    <b-input
+                      v-model="day"
+                      type="text"
+                      placeholder="日"
+                      :disabled="skipDate"
+                    ></b-input>
+                    <p class="control">
+                      <span class="button is-static">日</span>
+                    </p>
+                  </b-field>
+                </div>
+                <div class="column">
+                  <b-field label="発駅">
+                    <b-input
+                      v-model="departure"
+                      type="text"
+                      placeholder="発駅"
+                    ></b-input>
+                  </b-field>
+                </div>
+                <div class="column">
+                  <b-field label="着駅">
+                    <b-input
+                      v-model="destination"
+                      type="text"
+                      placeholder="着駅"
+                    ></b-input>
+                  </b-field>
+                </div>
+              </div>
+            </div>
+            <div class="routes">
+              <h3>
+                経路
+              </h3>
+
+              <div
+                v-for="(route, routeIndex) in routes"
+                :key="routeIndex"
+                class="columns"
               >
-                <option
-                  v-for="(option, typesIndex) in types"
-                  :value="option"
-                  :key="typesIndex"
-                >
-                  {{ option }}
-                </option>
-              </b-select>
-            </b-field>
+                <div class="column is-1">
+                  <p>
+                    路線数: {{ routeIndex + 1 }}
+                  </p>
+                  <button
+                    @click="deleteRoute(routeIndex)"
+                    class="delete"
+                    tabindex="-1"
+                  ></button>
+                </div>
+                <div class="column">
+                  <b-field label="路線名">
+                    <b-input
+                      v-model="route.line"
+                      type="text"
+                      placeholder="路線名"
+                      @keydown.tab.native="onKeyupTab(routeIndex)"
+                      @keydown.shift.enter.native="addRoute(routeIndex)"
+                    ></b-input>
+                  </b-field>
+                </div>
+                <div class="column">
+                  <b-field label="接続駅">
+                    <b-input
+                      v-model="route.station"
+                      type="text"
+                      placeholder="接続駅"
+                      @keydown.shift.enter.native="addRoute(routeIndex)"
+                    ></b-input>
+                  </b-field>
+                </div>
+              </div>
+            </div>
+            <div class="notes">
+              <b-field label="備考">
+                <b-input
+                  v-model="notes"
+                  type="textarea"
+                  placeholder="備考"
+                ></b-input>
+              </b-field>
+            </div>
           </div>
-          <div class="column is-2">
-            <b-field label="利用開始日">
-              <b-input
-                v-model="month"
-                type="text"
-                placeholder="月"
-                :disabled="skipDate"
-              ></b-input>
-              <p class="control">
-                <span class="button is-static">月</span>
-              </p>
-
-              <b-input
-                v-model="day"
-                type="text"
-                placeholder="日"
-                :disabled="skipDate"
-              ></b-input>
-              <p class="control">
-                <span class="button is-static">日</span>
-              </p>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="発駅">
-              <b-input
-                v-model="departure"
-                type="text"
-                placeholder="発駅"
-              ></b-input>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="着駅">
-              <b-input
-                v-model="destination"
-                type="text"
-                placeholder="着駅"
-              ></b-input>
-            </b-field>
-          </div>
-        </div>
-      </div>
-
-      <div class="content routes">
-        <h3>
-          経路
-        </h3>
-
-        <div
-          v-for="(route, routeIndex) in routes"
-          :key="routeIndex"
-          class="columns"
-        >
           <div class="column is-1">
-            <p>
-              路線数: {{ routeIndex + 1 }}
-            </p>
-            <button
-              @click="deleteRoute(routeIndex)"
-              class="delete"
-              tabindex="-1"
-            ></button>
-          </div>
-          <div class="column">
-            <b-field label="路線名">
-              <b-input
-                v-model="route.line"
-                type="text"
-                placeholder="路線名"
-                @keydown.tab.native="onKeyupTab(routeIndex)"
-                @keydown.shift.enter.native="addRoute(routeIndex)"
-              ></b-input>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="接続駅">
-              <b-input
-                v-model="route.station"
-                type="text"
-                placeholder="接続駅"
-                @keydown.shift.enter.native="addRoute(routeIndex)"
-              ></b-input>
-            </b-field>
+            <div class="buttons">
+              <b-button @click="setDate(0)" type="is-info is-light">
+                本日
+              </b-button>
+              <b-button @click="setDate(1)" type="is-info is-light">
+                明日
+              </b-button>
+              <b-button @click="setDate(2)" type="is-info is-light">
+                明後日
+              </b-button>
+              <b-button @click="setUndefinedDate" type="is-info is-light">
+                利用日未定
+              </b-button>
+              <b-button @click="setSkipDate" type="is-info is-light">
+                {{ skipDate ? '利用日非省略' : '利用日省略' }}
+              </b-button>
+            </div>
+            <div class="buttons">
+              <b-button @click="addRoute(-1)" type="is-info">
+                経路追加
+              </b-button>
+              <b-button @click="reverseRoutes" type="is-info is-light">
+                逆向き
+              </b-button>
+              <b-button @click="removeEmptyRoutes" type="is-danger is-light">
+                空経路削除
+              </b-button>
+              <b-button @click="removeAllSettings" type="is-danger">
+                全設定クリア
+              </b-button>
+              <b-button @click="removeAllRoutes" type="is-danger">
+                全経路クリア
+              </b-button>
+              <b-button @click="notes = ''" type="is-danger">
+                備考クリア
+              </b-button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="content notes">
-        <b-field label="備考">
-          <b-input
-            v-model="notes"
-            type="textarea"
-            placeholder="備考"
-          ></b-input>
-        </b-field>
-      </div>
-
-      <div class="content actions">
-        <h3>
-          操作
-        </h3>
-
-        <div class="buttons">
-          <b-button @click="setDate(0)" type="is-info is-light">
-            本日
+        <div class="content output">
+          <h3>
+            出力
+          </h3>
+          <b-button @click="copyOutput" size="is-small">
+            Copy
           </b-button>
-          <b-button @click="setDate(1)" type="is-info is-light">
-            明日
-          </b-button>
-          <b-button @click="setDate(2)" type="is-info is-light">
-            明後日
-          </b-button>
-          <b-button @click="setUndefinedDate" type="is-info is-light">
-            利用日未定
-          </b-button>
-          <b-button @click="setSkipDate" type="is-info is-light">
-            {{ skipDate ? '利用日非省略' : '利用日省略' }}
-          </b-button>
-          <b-button @click="addRoute(-1)" type="is-info">
-            経路追加
-          </b-button>
-          <b-button @click="reverseRoutes" type="is-info is-light">
-            逆向き
-          </b-button>
-          <b-button @click="removeEmptyRoutes" type="is-danger is-light">
-            空経路削除
-          </b-button>
-          <b-button @click="removeAllSettings" type="is-danger">
-            全設定クリア
-          </b-button>
-          <b-button @click="removeAllRoutes" type="is-danger">
-            全経路クリア
-          </b-button>
-          <b-button @click="notes = ''" type="is-danger">
-            備考クリア
-          </b-button>
+          <pre v-text="output"></pre>
         </div>
-      </div>
-
-      <div class="content output">
-        <h3>
-          出力
-        </h3>
-        <b-button @click="copyOutput" size="is-small">
-          Copy
-        </b-button>
-        <pre v-text="output"></pre>
       </div>
     </div>
   </section>
