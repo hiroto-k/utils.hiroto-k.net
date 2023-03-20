@@ -16,7 +16,7 @@
     "@nuxt/typescript-runtime": "2.1.0",
     "@nuxtjs/composition-api": "0.33.1",
     "cross-env": "7.0.3",
-    "nuxt": "2.16.2",
+    "nuxt": "2.16.3",
     "nuxt-buefy": "0.4.25",
     "ts-node": "10.9.1"
   },
