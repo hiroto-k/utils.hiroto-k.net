@@ -12,6 +12,7 @@ import TrainNumberPage from '~/components/pages/train-number/TrainNumberPage';
 import contentSource from '~/assets/train-number/2018-03-17.md';
 
 export default defineComponent({
+  layout: 'tailwind',
   name: 'TrainNumber20180317Page',
   components: {
     TrainNumberPage,
