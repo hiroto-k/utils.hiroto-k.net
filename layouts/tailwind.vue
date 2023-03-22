@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app bg-white scroll-smooth h-screen p-10">
     <main>
       <nuxt>
       </nuxt>
