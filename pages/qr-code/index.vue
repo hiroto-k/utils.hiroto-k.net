@@ -1,46 +1,44 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <div class="content">
-        <div class="qr-setting-fields">
-          <value-field>
-          </value-field>
+    <div class="content">
+      <div class="qr-setting-fields">
+        <value-field>
+        </value-field>
 
-          <size-field>
-          </size-field>
+        <size-field>
+        </size-field>
 
-          <error-correction-level-field>
-          </error-correction-level-field>
+        <error-correction-level-field>
+        </error-correction-level-field>
 
-          <render-as-field>
-          </render-as-field>
+        <render-as-field>
+        </render-as-field>
 
-          <back-ground-field>
-          </back-ground-field>
+        <back-ground-field>
+        </back-ground-field>
 
-          <fore-ground-field>
-          </fore-ground-field>
-        </div>
-
-        <qr-code-vue
-          :value="value"
-          :size="size"
-          :level="level"
-          :render-as="renderAs"
-          :background="backGround"
-          :foreground="foreGround"
-          class="qr-code"
-        >
-        </qr-code-vue>
+        <fore-ground-field>
+        </fore-ground-field>
       </div>
+
+      <qr-code-vue
+        :value="value"
+        :size="size"
+        :level="level"
+        :render-as="renderAs"
+        :background="backGround"
+        :foreground="foreGround"
+        class="qr-code"
+      >
+      </qr-code-vue>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -55,6 +53,7 @@ import ForeGroundField from '~/components/pages/qr-code/ForeGroundField';
 import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue, RootState } from '~/types';
 
 export default defineComponent({
+  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('QRコード生成');
