@@ -52,6 +52,8 @@ const nuxtConfig: NuxtConfig = {
       ignoreNotFoundWarnings: true,
     }],
 
+    '@nuxtjs/tailwindcss',
+
     '@nuxtjs/eslint-module',
 
     '@nuxtjs/composition-api/module',
