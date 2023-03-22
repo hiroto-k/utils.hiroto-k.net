@@ -1,24 +1,23 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <links-menu :links="trainNumberContentPageLinks">
-      </links-menu>
-    </div>
-  </section>
+    <tailwind-links-menu :links="trainNumberContentPageLinks" class="mt-5">
+    </tailwind-links-menu>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
-import LinksMenu from '~/components/ui/LinksMenu';
+import TailwindLinksMenu from '~/components/ui/TailwindLinksMenu';
 import { Link } from '~/types';
 
 export default defineComponent({
+  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('列車番号メモ');
@@ -56,7 +55,7 @@ export default defineComponent({
     };
   },
   components: {
-    LinksMenu,
+    TailwindLinksMenu,
   },
 });
 </script>

@@ -4,8 +4,6 @@
       <nuxt>
       </nuxt>
     </main>
-    <page-footer>
-    </page-footer>
   </div>
 </template>
 
@@ -17,9 +15,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.app {
-  font-family: "Noto Sans JP", "Helvetica", sans-serif;
-}
-</style>
