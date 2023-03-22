@@ -1,184 +1,230 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <div class="content settings">
-        <div class="columns">
-          <div class="column">
-            <div class="settings">
-              <h3>設定</h3>
-              <div class="columns">
-                <div class="column is-2">
-                  <b-field label="券種">
-                    <b-select
-                      v-model="type"
-                      placeholder="乗車券の種類を選択"
-                      expanded
-                    >
-                      <option
-                        v-for="(option, typesIndex) in types"
-                        :value="option"
-                        :key="typesIndex"
-                      >
-                        {{ option }}
-                      </option>
-                    </b-select>
-                  </b-field>
-                </div>
-                <div class="column is-2">
-                  <b-field label="利用開始日">
-                    <b-input
-                      v-model="month"
-                      type="text"
-                      placeholder="月"
-                      :disabled="skipDate"
-                    ></b-input>
-                    <p class="control">
-                      <span class="button is-static">月</span>
-                    </p>
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-10">
+        <h3 class="section-title">
+          設定
+        </h3>
 
-                    <b-input
-                      v-model="day"
-                      type="text"
-                      placeholder="日"
-                      :disabled="skipDate"
-                    ></b-input>
-                    <p class="control">
-                      <span class="button is-static">日</span>
-                    </p>
-                  </b-field>
-                </div>
-                <div class="column">
-                  <b-field label="発駅">
-                    <b-input
-                      v-model="departure"
-                      type="text"
-                      placeholder="発駅"
-                    ></b-input>
-                  </b-field>
-                </div>
-                <div class="column">
-                  <b-field label="着駅">
-                    <b-input
-                      v-model="destination"
-                      type="text"
-                      placeholder="着駅"
-                    ></b-input>
-                  </b-field>
-                </div>
-              </div>
-            </div>
-            <div class="routes">
-              <h3>
-                経路
-              </h3>
-
-              <div
-                v-for="(route, routeIndex) in routes"
-                :key="routeIndex"
-                class="columns"
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-2">
+            <label for="type" class="block mb-2 text-gray-900">
+              券種
+            </label>
+            <select
+              v-model="type"
+              id="type"
+              class="border border-gray-300 rounded-lg block w-full p-2.5"
+            >
+              <option
+                v-for="(option, typesIndex) in types"
+                :value="option"
+                :key="typesIndex"
               >
-                <div class="column is-1">
-                  <p>
-                    路線数: {{ routeIndex + 1 }}
-                  </p>
-                  <button
-                    @click="deleteRoute(routeIndex)"
-                    class="delete"
-                    tabindex="-1"
-                  ></button>
-                </div>
-                <div class="column">
-                  <b-field label="路線名">
-                    <b-input
-                      v-model="route.line"
-                      type="text"
-                      placeholder="路線名"
-                      @keydown.tab.native="onKeyupTab(routeIndex)"
-                      @keydown.shift.enter.native="addRoute(routeIndex)"
-                    ></b-input>
-                  </b-field>
-                </div>
-                <div class="column">
-                  <b-field label="接続駅">
-                    <b-input
-                      v-model="route.station"
-                      type="text"
-                      placeholder="接続駅"
-                      @keydown.shift.enter.native="addRoute(routeIndex)"
-                    ></b-input>
-                  </b-field>
-                </div>
-              </div>
-            </div>
-            <div class="notes">
-              <b-field label="備考">
-                <b-input
-                  v-model="notes"
-                  type="textarea"
-                  placeholder="備考"
-                ></b-input>
-              </b-field>
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="col-span-2">
+            <label class="block mb-2 text-gray-900">
+              利用開始日
+            </label>
+            <div class="flex">
+              <input
+                v-model="month"
+                type="text"
+                class="rounded-none bg-white border block flex-1 w-full border-gray-300 p-2.5 rounded-l-lg"
+                placeholder="月"
+              >
+              <span class="inline-flex items-center px-3 text-sm text-black bg-gray-200 border border-r-0 border-gray-300">
+                月
+              </span>
+              <input
+                v-model="day"
+                type="text"
+                class="rounded-none bg-white border block flex-1 w-full border-gray-300 p-2.5"
+                placeholder="日"
+              >
+              <span class="inline-flex items-center px-3 text-sm text-black bg-gray-200 border border-r-0 border-gray-300 rounded-r-md">
+                日
+              </span>
             </div>
           </div>
-          <div class="column is-1">
-            <div class="buttons">
-              <b-button @click="setDate(0)" type="is-info is-light">
-                本日
-              </b-button>
-              <b-button @click="setDate(1)" type="is-info is-light">
-                明日
-              </b-button>
-              <b-button @click="setDate(2)" type="is-info is-light">
-                明後日
-              </b-button>
-              <b-button @click="setUndefinedDate" type="is-info is-light">
-                利用日未定
-              </b-button>
-              <b-button @click="setSkipDate" type="is-info is-light">
-                {{ skipDate ? '利用日非省略' : '利用日省略' }}
-              </b-button>
-            </div>
-            <div class="buttons">
-              <b-button @click="addRoute(-1)" type="is-info">
-                経路追加
-              </b-button>
-              <b-button @click="reverseRoutes" type="is-info is-light">
-                逆向き
-              </b-button>
-              <b-button @click="removeEmptyRoutes" type="is-danger is-light">
-                空経路削除
-              </b-button>
-              <b-button @click="removeAllSettings" type="is-danger">
-                全設定クリア
-              </b-button>
-              <b-button @click="removeAllRoutes" type="is-danger">
-                全経路クリア
-              </b-button>
-              <b-button @click="notes = ''" type="is-danger">
-                備考クリア
-              </b-button>
-            </div>
+          <div class="col-span-4">
+            <label for="date" class="block mb-2 text-gray-900">
+              発駅
+            </label>
+            <input
+              v-model="departure"
+              type="text"
+              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+            >
           </div>
-        </div>
-
-        <div class="content output">
-          <h3>
-            出力
-          </h3>
-          <b-button @click="copyOutput" size="is-small">
-            Copy
-          </b-button>
-          <pre v-text="output"></pre>
+          <div class="col-span-4">
+            <label for="date" class="block mb-2 text-gray-900">
+              着駅
+            </label>
+            <input
+              v-model="destination"
+              type="text"
+              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+            >
+          </div>
         </div>
       </div>
+      <div class="col-span-2">
+        <button
+          @click="setDate(0)"
+          class="button button-control"
+        >
+          本日
+        </button>
+        <button
+          @click="setDate(1)"
+          class="button button-control"
+        >
+          明日
+        </button>
+        <button
+          @click="setDate(2)"
+          class="button button-control"
+        >
+          明後日
+        </button>
+        <button
+          @click="setUndefinedDate"
+          class="button button-control"
+        >
+          利用日未定
+        </button>
+        <button
+          @click="setSkipDate"
+          class="button button-control"
+        >
+          {{ skipDate ? '利用日非省略' : '利用日省略' }}
+        </button>
+        <button
+          @click="reverseRoutes"
+          class="button button-control"
+        >
+          逆向き
+        </button>
+        <button
+          @click="removeAllSettings"
+          class="button button-danger"
+        >
+          全設定クリア
+        </button>
+      </div>
+
+      <div class="col-span-10">
+        <h3 class="section-title">
+          経路
+        </h3>
+        <div
+          v-for="(route, routeIndex) in routes"
+          :key="routeIndex"
+          class="grid grid-cols-12 gap-4"
+        >
+          <div class="col-span-2">
+            <p>
+              路線数: {{ routeIndex + 1 }}
+            </p>
+            <button
+              @click="deleteRoute(routeIndex)"
+              class="delete"
+              tabindex="-1"
+            >
+              x
+            </button>
+          </div>
+          <div class="col-span-5">
+            <span class="text-lg font-semibold text-slate-700">
+              路線名
+            </span>
+            <input
+              v-model="route.line"
+              type="text"
+              placeholder="路線名"
+              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              @keydown.tab.native="onKeyupTab(routeIndex)"
+              @keydown.shift.enter.native="addRoute(routeIndex)"
+            >
+          </div>
+          <div class="col-span-5">
+            <span class="text-lg font-semibold text-slate-700">
+              接続駅
+            </span>
+            <input
+              v-model="route.station"
+              type="text"
+              placeholder="接続駅"
+              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              @keydown.tab="onKeyupTab(routeIndex)"
+              @keydown.shift.enter="addRoute(routeIndex)"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-span-2">
+        <button
+          @click="addRoute(-1)"
+          class="button button-control"
+        >
+          経路追加
+        </button>
+        <button
+          @click="removeEmptyRoutes"
+          class="button button-danger-light"
+        >
+          空経路削除
+        </button>
+      </div>
+
+      <div class="col-span-10">
+        <span class="text-lg block font-semibold text-slate-700">
+          備考
+        </span>
+        <textarea
+          v-model="notes"
+          placeholder="備考"
+          class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+        ></textarea>
+      </div>
+      <div class="col-span-2">
+        <button
+          @click="notes = ''"
+          class="button button-danger-light"
+        >
+          備考クリア
+        </button>
+      </div>
+
+      <div class="col-span-10">
+        <h3 class="section-title">
+          出力
+        </h3>
+        <pre
+          v-text="output"
+          class="bg-gray-200 p-5 rounded-md"
+        ></pre>
+      </div>
+      <div class="col-span-2">
+        <button
+          @click="copyOutput"
+          class="button button-control"
+        >
+          コピー
+        </button>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -188,6 +234,7 @@ import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-form
 import { Route } from '~/types';
 
 export default defineComponent({
+  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('乗車券の経路作成');
@@ -222,11 +269,7 @@ export default defineComponent({
     });
     const setDate = (addDate: number) => {
       if (skipDate.value) {
-        Snackbar.open({
-          message: '利用日省略が設定されています。',
-          pauseOnHover: true,
-          type: 'is-info',
-        });
+        alert('利用日省略が設定されています。');
       } else {
         const today = new Date();
         today.setDate(today.getDate() + addDate);
@@ -236,11 +279,7 @@ export default defineComponent({
     };
     const setUndefinedDate = () => {
       if (skipDate.value) {
-        Snackbar.open({
-          message: '利用日省略が設定されています。',
-          pauseOnHover: true,
-          type: 'is-info',
-        });
+        alert('利用日省略が設定されています。');
       } else {
         const undefinedDate = '     ';
         month.value = undefinedDate;
@@ -301,11 +340,7 @@ export default defineComponent({
     const copyOutput = () => {
       navigator.clipboard.writeText(output.value)
         .then((t) => {
-          Snackbar.open({
-            message: 'Copied!',
-            pauseOnHover: true,
-            type: 'is-link',
-          });
+          alert('Copied!');
           return t;
         })
         .catch(e => {
@@ -352,5 +387,24 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="postcss">
+.button {
+  @apply rounded-md px-2 py-2;
+}
+
+.button-control {
+  @apply bg-gray-400 text-white;
+}
+
+.button-danger {
+  @apply bg-red-400 text-white;
+}
+
+.button-danger-light {
+  @apply bg-red-200 text-red-800;
+}
+
+.section-title {
+  @apply text-2xl my-5;
+}
 </style>
