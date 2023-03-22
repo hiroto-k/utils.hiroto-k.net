@@ -1,21 +1,19 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <div class="content">
-        <number-calc>
-        </number-calc>
+    <div class="content">
+      <number-calc>
+      </number-calc>
 
-        <how-to-calc>
-        </how-to-calc>
-      </div>
+      <how-to-calc>
+      </how-to-calc>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,6 +22,7 @@ import HowToCalc from '~/components/pages/train-number-calc/HowToCalc';
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 
 export default defineComponent({
+  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('列車番号から列車種別を計算');
