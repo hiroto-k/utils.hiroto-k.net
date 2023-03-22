@@ -229,7 +229,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
-import { SnackbarProgrammatic as Snackbar } from 'buefy';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { Route } from '~/types';
 
