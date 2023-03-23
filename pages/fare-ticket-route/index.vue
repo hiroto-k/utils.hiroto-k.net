@@ -212,7 +212,7 @@
         </h3>
         <pre
           v-text="output"
-          class="bg-gray-200 p-5 rounded-md"
+          class="bg-gray-100 p-5 rounded-md"
         ></pre>
       </div>
       <div class="col-span-2">
