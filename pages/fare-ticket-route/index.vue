@@ -64,6 +64,7 @@
               v-model="departure"
               type="text"
               class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              placeholder="発駅"
             >
           </div>
           <div class="col-span-4">
@@ -74,6 +75,7 @@
               v-model="destination"
               type="text"
               class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              placeholder="着駅"
             >
           </div>
         </div>
