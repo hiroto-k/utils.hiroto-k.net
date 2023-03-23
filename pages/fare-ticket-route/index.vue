@@ -388,7 +388,7 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .button {
-  @apply rounded-md px-2 py-2;
+  @apply rounded-md px-2 py-2 mb-2;
 }
 
 .button-control {
