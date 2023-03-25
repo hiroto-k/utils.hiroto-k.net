@@ -20,7 +20,7 @@
             <select
               v-model="type"
               id="type"
-              class="border border-gray-300 rounded-lg block w-full p-2.5"
+              class="input rounded-lg block w-full p-2.5"
             >
               <option
                 v-for="(option, typesIndex) in types"
@@ -39,7 +39,7 @@
               <input
                 v-model="month"
                 type="text"
-                class="rounded-none bg-white border block flex-1 w-full border-gray-300 p-2.5 rounded-l-lg"
+                class="input rounded-none block flex-1 w-full p-2.5 rounded-l-lg"
                 placeholder="月"
               >
               <span class="inline-flex items-center px-3 text-sm text-black bg-gray-200 border border-r-0 border-gray-300">
@@ -48,7 +48,7 @@
               <input
                 v-model="day"
                 type="text"
-                class="rounded-none bg-white border block flex-1 w-full border-gray-300 p-2.5"
+                class="input rounded-none block flex-1 w-full p-2.5"
                 placeholder="日"
               >
               <span class="inline-flex items-center px-3 text-sm text-black bg-gray-200 border border-r-0 border-gray-300 rounded-r-md">
@@ -63,7 +63,7 @@
             <input
               v-model="departure"
               type="text"
-              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="発駅"
             >
           </div>
@@ -74,7 +74,7 @@
             <input
               v-model="destination"
               type="text"
-              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="着駅"
             >
           </div>
@@ -154,7 +154,7 @@
               v-model="route.line"
               type="text"
               placeholder="路線名"
-              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab.native="onKeyupTab(routeIndex)"
               @keydown.shift.enter.native="addRoute(routeIndex)"
             >
@@ -167,7 +167,7 @@
               v-model="route.station"
               type="text"
               placeholder="接続駅"
-              class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+              class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab="onKeyupTab(routeIndex)"
               @keydown.shift.enter="addRoute(routeIndex)"
             >
@@ -196,7 +196,7 @@
         <textarea
           v-model="notes"
           placeholder="備考"
-          class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+          class="input mt-1 px-3 py-2 block w-full rounded-md"
         ></textarea>
       </div>
       <div class="col-span-2">
@@ -388,6 +388,10 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
+.input {
+  @apply bg-white border border-gray-300 focus:border-blue-300;
+}
+
 .button {
   @apply rounded-md px-2 py-2 mb-2;
 }
