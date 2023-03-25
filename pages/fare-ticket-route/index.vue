@@ -6,13 +6,13 @@
     <p class="subtitle" v-text="description">
     </p>
 
-    <div class="grid grid-cols-12 gap-4">
+    <div class="xl:grid xl:grid-cols-12 xl:gap-4">
       <div class="col-span-10">
         <h3 class="section-title">
           設定
         </h3>
 
-        <div class="grid grid-cols-12 gap-4">
+        <div class="xl:grid xl:grid-cols-12 xl:gap-4">
           <div class="col-span-2">
             <label for="type" class="block mb-2 text-gray-900">
               券種
