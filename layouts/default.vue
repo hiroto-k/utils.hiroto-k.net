@@ -1,30 +1,22 @@
 <template>
-  <div class="app">
-    <main>
+  <div class="app bg-white scroll-smooth h-screen">
+    <main class="p-10">
       <nuxt>
       </nuxt>
     </main>
-    <page-footer>
-    </page-footer>
+
+    <tailwind-page-footer>
+    </tailwind-page-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import PageFooter from '~/components/layouts/PageFooter';
+import TailwindPageFooter from '~/components/layouts/TailwindPageFooter';
 
 export default defineComponent({
   components: {
-    PageFooter,
+    TailwindPageFooter,
   },
 });
 </script>
-
-<style scoped>
-.app {
-  font-family: "Noto Sans JP", "Helvetica", sans-serif;
-  letter-spacing: .1em;
-  text-align: justify;
-  word-break: break-all;
-}
-</style>

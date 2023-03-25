@@ -17,7 +17,6 @@ import TailwindLinksMenu from '~/components/ui/TailwindLinksMenu';
 import { Link } from '~/types';
 
 export default defineComponent({
-  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('utils.hiroxto.net');

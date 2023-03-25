@@ -22,7 +22,6 @@ import HowToCalc from '~/components/pages/train-number-calc/HowToCalc';
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('列車番号から列車種別を計算');

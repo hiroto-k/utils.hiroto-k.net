@@ -235,7 +235,6 @@ import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-form
 import { Route } from '~/types';
 
 export default defineComponent({
-  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('乗車券の経路作成');

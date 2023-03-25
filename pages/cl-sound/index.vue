@@ -22,7 +22,6 @@ import PlaySound from '~/components/pages/cl-sound/PlaySound';
 import Specification from '~/components/pages/cl-sound/Specification';
 
 export default defineComponent({
-  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('EMVコンタクトレスのサウンドをWeb Audio APIで再生');

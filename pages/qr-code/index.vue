@@ -53,7 +53,6 @@ import ForeGroundField from '~/components/pages/qr-code/ForeGroundField';
 import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue, RootState } from '~/types';
 
 export default defineComponent({
-  layout: 'tailwind',
   head: {},
   setup () {
     const title = ref<string>('QRコード生成');
