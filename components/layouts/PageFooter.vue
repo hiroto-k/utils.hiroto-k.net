@@ -1,31 +1,24 @@
 <template>
-  <footer class="footer">
-    <div class="container">
-      <div class="content">
-        <div class="columns">
-          <div class="column">
-            <p v-text="footerTitle" class="footer-column-title">
-            </p>
-          </div>
-
-          <div class="column">
-            <p v-text="footerLinksTitle" class="footer-column-title">
-            </p>
-            <p
-              v-for="(pageLink, allPageLinksKey) in allPageLinks"
-              :key="allPageLinksKey"
-              class="footer-column-item"
-            >
-              <nuxt-link
-                :to="pageLink.to"
-                :title="pageLink.title"
-                v-text="pageLink.title"
-                class="footer-column-link"
-              >
-              </nuxt-link>
-            </p>
-          </div>
-        </div>
+  <footer class="bg-zinc-50 p-10">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-6">
+        <p v-text="footerTitle" class="text-xl">
+        </p>
+      </div>
+      <div class="col-span-6">
+        <p v-text="footerLinksTitle" class="text-xl"></p>
+        <p
+          v-for="(pageLink, allPageLinksKey) in allPageLinks"
+          :key="allPageLinksKey"
+          class="py-1"
+        >
+          <nuxt-link
+            :to="pageLink.to"
+            :title="pageLink.title"
+            v-text="pageLink.title"
+          >
+          </nuxt-link>
+        </p>
       </div>
     </div>
   </footer>
@@ -39,6 +32,10 @@ export default defineComponent({
   name: 'PageFooter',
   setup () {
     const allPageLinks = ref<Link[]>([
+      {
+        title: 'トップページ',
+        to: '/',
+      },
       {
         title: '列車番号メモ',
         to: '/train-number',
@@ -73,24 +70,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.footer-column-title {
-  color: #000000;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.footer-column-item {
-  color: #000000;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.footer-column-link {
-  color: #12428F;
-}
-
-.footer-column-link:hover {
-  color: #3273dc;
-}
 </style>

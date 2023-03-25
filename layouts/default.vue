@@ -5,18 +5,18 @@
       </nuxt>
     </main>
 
-    <tailwind-page-footer>
-    </tailwind-page-footer>
+    <page-footer>
+    </page-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import TailwindPageFooter from '~/components/layouts/TailwindPageFooter';
+import PageFooter from '~/components/layouts/PageFooter';
 
 export default defineComponent({
   components: {
-    TailwindPageFooter,
+    PageFooter,
   },
 });
 </script>
