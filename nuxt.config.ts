@@ -41,9 +41,6 @@ const nuxtConfig: NuxtConfig = {
   ** Nuxt.js modules
   */
   modules: [
-    // ['nuxt-buefy', {
-    //   materialDesignIcons: true,
-    // }],
   ],
 
   buildModules: [
