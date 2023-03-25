@@ -1,20 +1,20 @@
 <template>
-  <b-field label="サイズ">
-    <b-slider
+  <div class="my-5">
+    <label for="size" class="block text-lg font-semibold text-slate-700">
+      サイズ
+    </label>
+    <span class="block text-slate-700">
+      {{ size }}
+    </span>
+    <input
       v-model="size"
       :min="1"
       :max="500"
+      id="size"
+      type="range"
+      class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
     >
-      <b-slider-tick
-        v-for="(sliderTickValue, sliderTicksKey) in sliderTicks"
-        :key="sliderTicksKey"
-        :value="sliderTickValue"
-        v-text="sliderTickValue"
-        style="word-break:keep-all;"
-      >
-      </b-slider-tick>
-    </b-slider>
-  </b-field>
+  </div>
 </template>
 
 <script lang="ts">

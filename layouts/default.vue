@@ -1,9 +1,10 @@
 <template>
-  <div class="app">
-    <main>
+  <div class="app bg-white scroll-smooth h-screen">
+    <main class="p-10">
       <nuxt>
       </nuxt>
     </main>
+
     <page-footer>
     </page-footer>
   </div>
@@ -19,12 +20,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.app {
-  font-family: "Noto Sans JP", "Helvetica", sans-serif;
-  letter-spacing: .1em;
-  text-align: justify;
-  word-break: break-all;
-}
-</style>

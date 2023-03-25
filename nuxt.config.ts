@@ -41,9 +41,9 @@ const nuxtConfig: NuxtConfig = {
   ** Nuxt.js modules
   */
   modules: [
-    ['nuxt-buefy', {
-      materialDesignIcons: true,
-    }],
+    // ['nuxt-buefy', {
+    //   materialDesignIcons: true,
+    // }],
   ],
 
   buildModules: [
@@ -51,6 +51,8 @@ const nuxtConfig: NuxtConfig = {
       typeCheck: true,
       ignoreNotFoundWarnings: true,
     }],
+
+    '@nuxtjs/tailwindcss',
 
     '@nuxtjs/eslint-module',
 

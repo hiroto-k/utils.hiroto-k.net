@@ -1,16 +1,14 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <links-menu :links="pageLinks">
-      </links-menu>
-    </div>
-  </section>
+    <links-menu :links="pageLinks" class="mt-5">
+    </links-menu>
+  </div>
 </template>
 
 <script lang="ts">

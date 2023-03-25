@@ -1,11 +1,15 @@
 <template>
-  <b-field label="埋め込む値">
-    <b-input
+  <div class="my-5">
+    <label for="size" class="block text-lg font-semibold text-slate-700">
+      埋め込む値
+    </label>
+    <input
       v-model="value"
+      type="text"
+      class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
       placeholder="値を入力"
     >
-    </b-input>
-  </b-field>
+  </div>
 </template>
 
 <script lang="ts">

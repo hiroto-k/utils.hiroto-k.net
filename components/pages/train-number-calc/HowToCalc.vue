@@ -1,15 +1,19 @@
 <template>
-  <div class="how-to-calc mt-5">
-    <h3>
+  <div class="mt-5 [&_*]:my-2 [&_code]:bg-neutral-100 [&_code]:text-red-500">
+    <h3 class="text-2xl font-bold">
       列車種別の求め方
     </h3>
 
-    <h4>1. 旅客列車と貨物列車の判別</h4>
+    <h4 class="text-xl font-bold">
+      1. 旅客列車と貨物列車の判別
+    </h4>
     <p>列車番号の下2桁を見る。(e.g. <code>1列車</code>の場合<code>01</code>、<code>2022列車</code>の場合<code>22</code>、<code>5094列車</code>の場合<code>94</code>。)</p>
     <p><code>00〜49</code>なら旅客列車(2へ)、<code>50〜99</code>なら貨物列車(3へ)。</p>
 
-    <h4>2. 旅客列車の場合</h4>
-    <ul>
+    <h4 class="text-xl font-bold">
+      2. 旅客列車の場合
+    </h4>
+    <ul class="list-disc list-outside ml-8">
       <li
         v-for="(passengerHtml, passengerHtmlListKey) in passengerHtmlList"
         :key="passengerHtmlListKey"
@@ -18,15 +22,17 @@
       </li>
     </ul>
 
-    <h4>3. 貨物列車の場合</h4>
-    <ul>
+    <h4 class="text-xl font-bold">
+      3. 貨物列車の場合
+    </h4>
+    <ul class="list-disc list-outside ml-8">
       <li
         v-for="(freightHtmlItem, freightHtmlListKey) in freightHtmlList"
         :key="freightHtmlListKey"
       >
         <div v-html="freightHtmlItem.html"></div>
         <template v-if="freightHtmlItem.list !== undefined">
-          <ul>
+          <ul class="list-disc list-outside ml-8">
             <li
               v-for="(nestedHtml, freightHtmlItemListKey) in freightHtmlItem.list"
               :key="freightHtmlItemListKey"

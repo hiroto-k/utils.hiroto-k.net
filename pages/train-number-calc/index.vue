@@ -1,21 +1,19 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title" v-text="title">
-      </h1>
+  <div class="container">
+    <h1 class="title" v-text="title">
+    </h1>
 
-      <h2 class="subtitle" v-text="description">
-      </h2>
+    <p class="subtitle" v-text="description">
+    </p>
 
-      <div class="content">
-        <number-calc>
-        </number-calc>
+    <div class="content">
+      <number-calc>
+      </number-calc>
 
-        <how-to-calc>
-        </how-to-calc>
-      </div>
+      <how-to-calc>
+      </how-to-calc>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
