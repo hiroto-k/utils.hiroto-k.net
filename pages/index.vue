@@ -6,14 +6,14 @@
     <p class="subtitle" v-text="description">
     </p>
 
-    <tailwind-links-menu :links="pageLinks" class="mt-5">
-    </tailwind-links-menu>
+    <links-menu :links="pageLinks" class="mt-5">
+    </links-menu>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
-import TailwindLinksMenu from '~/components/ui/TailwindLinksMenu';
+import LinksMenu from '~/components/ui/LinksMenu';
 import { Link } from '~/types';
 
 export default defineComponent({
@@ -59,7 +59,7 @@ export default defineComponent({
     };
   },
   components: {
-    TailwindLinksMenu,
+    LinksMenu,
   },
 });
 </script>
