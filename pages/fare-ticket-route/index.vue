@@ -134,9 +134,9 @@
           :key="routeIndex"
           class="grid grid-cols-12 gap-4"
         >
-          <div class="col-span-2">
+          <div class="col-span-2 text-gray-900">
             <p>
-              路線数: {{ routeIndex + 1 }}
+              経路数: {{ routeIndex + 1 }}
             </p>
             <button
               @click="deleteRoute(routeIndex)"
@@ -147,7 +147,7 @@
             </button>
           </div>
           <div class="col-span-5">
-            <span class="text-lg font-semibold text-slate-700">
+            <span class="text-gray-900">
               路線名
             </span>
             <input
@@ -160,7 +160,7 @@
             >
           </div>
           <div class="col-span-5">
-            <span class="text-lg font-semibold text-slate-700">
+            <span class="text-gray-900">
               接続駅
             </span>
             <input
