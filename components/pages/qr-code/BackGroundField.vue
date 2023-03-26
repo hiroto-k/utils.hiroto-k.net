@@ -12,19 +12,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useStore } from '@nuxtjs/composition-api';
-import { RootState } from '~/types';
+import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
 
 export default defineComponent({
   name: 'BackGroundField',
   setup () {
-    const store = useStore<RootState>();
+    const store = useQrCodeGeneratorStore();
     const backGround = computed<string>({
       get: () => {
-        return store.state.qrCodeGenerator.backGround;
+        return store.backGround;
       },
-      set: (val) => {
-        store.commit('qrCodeGenerator/setBackGround', val);
+      set: (backGround) => {
+        store.backGround = backGround;
       },
     });
 

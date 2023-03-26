@@ -30,7 +30,8 @@
     "types": [
       "@types/node",
       "@types/marked",
-      "@nuxt/types"
+      "@nuxt/types",
+      "@pinia/nuxt"
     ]
   },
   "files": [

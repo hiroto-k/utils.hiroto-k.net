@@ -29,8 +29,9 @@
 </template>
 
 <script lang="ts">
-import { QrCodeErrorCorrectionLevel, RootState } from '~/types';
-import { computed, defineComponent, reactive, useStore } from '@nuxtjs/composition-api';
+import { QrCodeErrorCorrectionLevel } from '~/types';
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
+import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
 
 interface ErrorCorrectionLevelFormOption {
   value: QrCodeErrorCorrectionLevel;
@@ -40,16 +41,16 @@ interface ErrorCorrectionLevelFormOption {
 export default defineComponent({
   name: 'ErrorCorrectionLevelField',
   setup () {
-    const store = useStore<RootState>();
+    const store = useQrCodeGeneratorStore();
     const level = computed<QrCodeErrorCorrectionLevel>({
       get: () => {
-        return store.state.qrCodeGenerator.level;
+        return store.level;
       },
-      set: (val) => {
-        store.commit('qrCodeGenerator/setLevel', val);
+      set: (level) => {
+        store.level = level;
       },
     });
-    const levelForms = reactive<ErrorCorrectionLevelFormOption[]>([
+    const levelForms = ref<ErrorCorrectionLevelFormOption[]>([
       { value: 'L', text: 'Level L (7%)' },
       { value: 'M', text: 'Level M (15%)' },
       { value: 'Q', text: 'Level Q (25%)' },

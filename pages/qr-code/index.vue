@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useMeta, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import QrCodeVue from 'qrcode.vue';
 import ValueField from '~/components/pages/qr-code/ValueField';
 import SizeField from '~/components/pages/qr-code/SizeField';
@@ -50,11 +50,12 @@ import ErrorCorrectionLevelField from '~/components/pages/qr-code/ErrorCorrectio
 import RenderAsField from '~/components/pages/qr-code/RenderAsField';
 import BackGroundField from '~/components/pages/qr-code/BackGroundField';
 import ForeGroundField from '~/components/pages/qr-code/ForeGroundField';
-import { QrCodeErrorCorrectionLevel, QrCodeRenderAsOptionValue, RootState } from '~/types';
+import { useQrCodeGeneratorStore } from '../../store/qrCodeGenerator';
 
 export default defineComponent({
   head: {},
   setup () {
+    const store = useQrCodeGeneratorStore();
     const title = ref<string>('QRコード生成');
     const description = ref<string>('ブラウザでQRコードを生成．');
 
@@ -65,13 +66,12 @@ export default defineComponent({
       ],
     }));
 
-    const store = useStore<RootState>();
-    const value = computed<string>(() => store.state.qrCodeGenerator.value);
-    const size = computed<number>(() => store.state.qrCodeGenerator.size);
-    const level = computed<QrCodeErrorCorrectionLevel>(() => store.state.qrCodeGenerator.level);
-    const renderAs = computed<QrCodeRenderAsOptionValue>(() => store.state.qrCodeGenerator.renderAs);
-    const backGround = computed<string>(() => store.state.qrCodeGenerator.backGround);
-    const foreGround = computed<string>(() => store.state.qrCodeGenerator.foreGround);
+    const value = computed(() => store.value);
+    const size = computed(() => store.size);
+    const level = computed(() => store.level);
+    const renderAs = computed(() => store.renderAs);
+    const backGround = computed(() => store.backGround);
+    const foreGround = computed(() => store.foreGround);
 
     return {
       title,
