@@ -115,7 +115,7 @@
           @click="reverseRoutes"
           class="button button-control"
         >
-          逆向き
+          発着逆転
         </button>
         <button
           @click="removeAllSettings"
