@@ -8,7 +8,3 @@ export interface QrCodeGeneratorState {
   backGround: string;
   foreGround: string;
 }
-
-export interface RootState {
-  qrCodeGenerator: QrCodeGeneratorState;
-}
