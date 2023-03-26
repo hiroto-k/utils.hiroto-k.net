@@ -54,6 +54,7 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/eslint-module',
 
     '@nuxtjs/composition-api/module',
+    '@pinia/nuxt',
   ],
 
   /*
