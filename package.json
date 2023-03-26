@@ -15,7 +15,13 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "3.0.0",
     "@nuxtjs/composition-api": "0.33.1",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "cross-env": "7.0.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.10.0",
     "nuxt": "2.16.3",
     "ts-node": "10.9.1"
   },
