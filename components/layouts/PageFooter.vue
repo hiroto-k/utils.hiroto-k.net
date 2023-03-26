@@ -15,8 +15,8 @@
           <nuxt-link
             :to="pageLink.to"
             :title="pageLink.title"
-            v-text="pageLink.title"
           >
+            {{ pageLink.title }}
           </nuxt-link>
         </p>
       </div>
