@@ -8,4 +8,7 @@ module.exports = {
     node: true,
   },
   extends: ['@hiroxto', '@hiroxto/eslint-config/vue'],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+  },
 };
