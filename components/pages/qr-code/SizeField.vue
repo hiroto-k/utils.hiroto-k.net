@@ -18,27 +18,24 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, useStore } from '@nuxtjs/composition-api';
-import { RootState } from '~/types';
+import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
 
 export default defineComponent({
   name: 'SizeField',
   setup () {
-    const store = useStore<RootState>();
+    const store = useQrCodeGeneratorStore();
     const size = computed<number>({
       get: () => {
-        return store.state.qrCodeGenerator.size;
+        return store.size;
       },
       set: (val) => {
-        store.commit('qrCodeGenerator/setSize', val);
+        store.size = val;
       },
     });
 
-    const sliderTicks = reactive<number[]>([0, 100, 200, 300, 400, 500]);
-
     return {
       size,
-      sliderTicks,
     };
   },
 });
