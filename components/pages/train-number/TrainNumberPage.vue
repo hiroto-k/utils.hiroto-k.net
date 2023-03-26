@@ -21,11 +21,10 @@ export default defineComponent({
   },
   head: {},
   setup (props) {
-    const title = props.title;
-    const description = computed<string>(() => `列車番号メモ ${title}`);
+    const description = computed<string>(() => `列車番号メモ ${props.title}`);
 
     useMeta(() => ({
-      title: title,
+      title: props.title,
       meta: [
         { hid: 'description', name: 'description', content: description.value },
       ],
