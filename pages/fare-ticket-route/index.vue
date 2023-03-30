@@ -249,8 +249,6 @@ export default defineComponent({
       '連続乗車券',
       '往復乗車券(別線)',
     ];
-    const departure = ref<string>('');
-    const destination = ref<string>('');
     const removeAllSettings = () => {
       store.resetType();
       store.useDate();
@@ -287,9 +285,7 @@ export default defineComponent({
       }
     };
     const reverseRoutes = () => {
-      const newDeparture = destination.value;
-      destination.value = departure.value;
-      departure.value = newDeparture;
+      store.reverseStations();
       removeEmptyRoutes();
       routes.value = routes.value.reverse().map((route, index, orig) => {
         route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
