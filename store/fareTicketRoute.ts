@@ -84,6 +84,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       this.routes = [createRoute()]
     },
     reverseRoutes (): void {
+      this.deleteEmptyRoutes();
       this.routes = this.routes.reverse().map((route, index, orig) => {
         route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
         return route;
