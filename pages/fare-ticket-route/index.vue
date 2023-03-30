@@ -18,7 +18,7 @@
               券種
             </label>
             <select
-              v-model="type"
+              v-model="store.type"
               id="type"
               class="input rounded-lg block w-full p-2.5"
             >
@@ -37,7 +37,7 @@
             </label>
             <div class="flex">
               <input
-                v-model="month"
+                v-model="store.month"
                 type="text"
                 class="input rounded-none block flex-1 w-full p-2.5 rounded-l-lg"
                 placeholder="月"
@@ -46,7 +46,7 @@
                 月
               </span>
               <input
-                v-model="day"
+                v-model="store.day"
                 type="text"
                 class="input rounded-none block flex-1 w-full p-2.5"
                 placeholder="日"
@@ -61,7 +61,7 @@
               発駅
             </label>
             <input
-              v-model="departure"
+              v-model="store.departure"
               type="text"
               class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="発駅"
@@ -72,7 +72,7 @@
               着駅
             </label>
             <input
-              v-model="destination"
+              v-model="store.destination"
               type="text"
               class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="着駅"
@@ -109,10 +109,10 @@
           @click="setSkipDate"
           class="button button-control"
         >
-          {{ skipDate ? '利用日非省略' : '利用日省略' }}
+          {{ store.skipDate ? '利用日非省略' : '利用日省略' }}
         </button>
         <button
-          @click="reverseRoutes"
+          @click="store.reverseStationsAndRoutes()"
           class="button button-control"
         >
           発着逆転
@@ -130,7 +130,7 @@
           経路
         </h3>
         <div
-          v-for="(route, routeIndex) in routes"
+          v-for="(route, routeIndex) in store.routes"
           :key="routeIndex"
           class="grid grid-cols-12 gap-4"
         >
@@ -139,7 +139,7 @@
               経路数: {{ routeIndex + 1 }}
             </p>
             <button
-              @click="deleteRoute(routeIndex)"
+              @click="store.deleteRoute(routeIndex)"
               class="delete"
               tabindex="-1"
             >
@@ -156,7 +156,7 @@
               placeholder="路線名"
               class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab.native="onKeyupTab(routeIndex)"
-              @keydown.shift.enter.native="addRoute(routeIndex)"
+              @keydown.shift.enter.native="store.addRoute(routeIndex)"
             >
           </div>
           <div class="col-span-5">
@@ -169,20 +169,20 @@
               placeholder="接続駅"
               class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab="onKeyupTab(routeIndex)"
-              @keydown.shift.enter="addRoute(routeIndex)"
+              @keydown.shift.enter="store.addRoute(routeIndex)"
             >
           </div>
         </div>
       </div>
       <div class="col-span-2">
         <button
-          @click="addRoute(-1)"
+          @click="store.addRoute(-1)"
           class="button button-control"
         >
           経路追加
         </button>
         <button
-          @click="removeEmptyRoutes"
+          @click="store.deleteEmptyRoutes()"
           class="button button-danger-light"
         >
           空経路削除
@@ -194,14 +194,14 @@
           備考
         </span>
         <textarea
-          v-model="notes"
+          v-model="store.notes"
           placeholder="備考"
           class="input mt-1 px-3 py-2 block w-full rounded-md"
         ></textarea>
       </div>
       <div class="col-span-2">
         <button
-          @click="notes = ''"
+          @click="store.resetNotes()"
           class="button button-danger-light"
         >
           備考クリア
@@ -233,108 +233,66 @@
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { Route } from '~/types';
+import { useFareTicketRoute } from '../../store/fareTicketRoute';
+import { TicketType } from '../../types';
 
 export default defineComponent({
   head: {},
   setup () {
     const title = ref<string>('乗車券の経路作成');
     const description = ref<string>('複雑な経路の乗車券を窓口で作る際に紙に書く経路を作るツール');
+    const store = useFareTicketRoute();
 
-    const types = [
+    const types: TicketType[] = [
       '片道乗車券',
       '往復乗車券',
-      '連続乗車券 (連続1)',
-      '連続乗車券 (連続2)',
+      '連続乗車券',
+      '往復乗車券(別線)',
     ];
-    const type = ref<string>('片道乗車券');
-    const month = ref<string>('');
-    const day = ref<string>('');
-    const skipDate = ref<boolean>(false);
-    const departure = ref<string>('');
-    const destination = ref<string>('');
     const removeAllSettings = () => {
-      type.value = types[0];
-      skipDate.value = false;
-      [month, day, departure, destination].forEach(ref => {
-        ref.value = '';
-      });
+      store.resetType();
+      store.useDate();
+      store.resetStations();
     };
     const createRoute = (): Route => {
       return { line: '', station: '' };
     };
-    const routes = ref<Route[]>([createRoute()]);
-    const notes = ref<string>('');
-    const valuedRoutes = computed<Route[]>(() => {
-      return routes.value.filter((route) => route.line.trim() !== '');
-    });
     const setDate = (addDate: number) => {
-      if (skipDate.value) {
+      if (store.skipDate) {
         alert('利用日省略が設定されています。');
       } else {
-        const today = new Date();
-        today.setDate(today.getDate() + addDate);
-        month.value = (today.getMonth() + 1).toString();
-        day.value = today.getDate().toString();
+        store.setDate(addDate);
       }
     };
     const setUndefinedDate = () => {
-      if (skipDate.value) {
+      if (store.skipDate) {
         alert('利用日省略が設定されています。');
       } else {
-        const undefinedDate = '     ';
-        month.value = undefinedDate;
-        day.value = undefinedDate;
+        store.setUndefinedDate();
       }
     };
     const setSkipDate = () => {
-      skipDate.value = !skipDate.value;
-      if (skipDate.value) {
-        month.value = '省略';
-        day.value = '省略';
+      store.skipDate = !store.skipDate;
+      if (store.skipDate) {
+        store.unUseDate();
       } else {
-        month.value = '';
-        day.value = '';
+        store.useDate();
       }
     };
-    const reverseRoutes = () => {
-      const newDeparture = destination.value;
-      destination.value = departure.value;
-      departure.value = newDeparture;
-      removeEmptyRoutes();
-      routes.value = routes.value.reverse().map((route, index, orig) => {
-        route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
-        return route;
-      });
-    };
-    const addRoute = (index: number) => {
-      if (index <= -1) {
-        routes.value.push(createRoute());
-      } else {
-        routes.value.splice(index + 1, 0, createRoute());
-      }
-    };
-    const deleteRoute = (index: number) => routes.value.splice(index, 1);
-    const removeEmptyRoutes = () => {
-      const newRoutes = routes.value.filter(route => {
-        return route.line.trim() !== '' || route.station.trim() !== '';
-      });
-      routes.value = newRoutes.length === 0 ? [createRoute()] : newRoutes;
-    };
-    const removeAllRoutes = () => (routes.value = [createRoute()]);
     const onKeyupTab = (index: number) => {
-      if (routes.value.length - 1 === index) {
-        addRoute(-1);
+      if (store.routes.length - 1 === index) {
+        store.addRoute(-1);
       }
     };
     const output = computed<string>(() => {
       const header = [
-        type.value,
-        skipDate.value ? null : `利用開始日: ${month.value}月${day.value}日`,
-        `区間: ${departure.value}→${destination.value}`,
+        store.type,
+        store.skipDate ? null : `利用開始日: ${store.month}月${store.day}日`,
+        `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
-      const routesOutput = new DefaultFormatter(valuedRoutes.value).format();
+      const routesOutput = new DefaultFormatter(store.valuedRoutes).format();
       const content = `経由: ${routesOutput}`;
-      const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
+      const footer = store.notes === '' ? '' : `備考: ${store.notes.trim()}`;
       return `${header}\n\n${content}\n\n${footer}`.trim();
     });
     const copyOutput = () => {
@@ -358,25 +316,13 @@ export default defineComponent({
     return {
       title,
       description,
+      store,
       types,
-      type,
-      month,
-      day,
-      skipDate,
-      departure,
-      destination,
       removeAllSettings,
       createRoute,
-      routes,
-      notes,
       setDate,
       setUndefinedDate,
       setSkipDate,
-      reverseRoutes,
-      addRoute,
-      deleteRoute,
-      removeEmptyRoutes,
-      removeAllRoutes,
       onKeyupTab,
       output,
       copyOutput,
