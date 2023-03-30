@@ -1,5 +1,15 @@
 import { defineStore } from 'pinia';
-import { FareTicketRouteStore, TicketType, FareTicketRouteStoreActions, FareTicketRouteStoreGetters } from '../types';
+import {
+  FareTicketRouteStore,
+  TicketType,
+  FareTicketRouteStoreActions,
+  FareTicketRouteStoreGetters,
+  Route,
+} from '../types';
+
+const createRoute = (): Route => {
+  return { line: '', station: '' };
+};
 
 export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRouteStore, FareTicketRouteStoreGetters, FareTicketRouteStoreActions>('FareTicketRoute', {
   state: () => ({
@@ -48,6 +58,31 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       const undefinedDate = '     ';
       this.month = undefinedDate;
       this.day = undefinedDate;
+    },
+    addRoute (index: number): void {
+      if (index <= -1) {
+        this.routes.push(createRoute());
+      } else {
+        this.routes.splice(index + 1, 0, createRoute());
+      }
+    },
+    deleteRoute (index: number): void {
+      this.routes.splice(index, 1);
+    },
+    deleteRmptyRoutes (): void {
+      const newRoutes = this.routes.filter(route => {
+        return route.line.trim() !== '' || route.station.trim() !== '';
+      });
+      this.routes = newRoutes.length === 0 ? [createRoute()] : newRoutes;
+    },
+    deleteAllRoutes(): void {
+      this.routes = [createRoute()]
+    },
+    reverseRoutes (): void {
+      this.routes = this.routes.reverse().map((route, index, orig) => {
+        route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
+        return route;
+      });
     },
     setDeparture (departure: string): void {
       this.departure = departure;
