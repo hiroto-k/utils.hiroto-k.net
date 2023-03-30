@@ -15,7 +15,9 @@ export interface FareTicketRouteStore {
   notes: string
 }
 
-export type FareTicketRouteStoreGetters = _GettersTree<FareTicketRouteStore>
+export interface FareTicketRouteStoreGetters extends _GettersTree<FareTicketRouteStore> {
+  valuedRoutes(): Route[]
+}
 
 export interface FareTicketRouteStoreActions {
   setType(type: TicketType): void

@@ -25,6 +25,11 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     destination: '',
     notes: '',
   }),
+  getters: {
+    valuedRoutes (): Route[] {
+      return this.routes.filter((route) => route.line.trim() !== '');
+    },
+  },
   actions: {
     setType (type: TicketType): void {
       this.type = type;
