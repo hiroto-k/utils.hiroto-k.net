@@ -112,7 +112,7 @@
           {{ store.skipDate ? '利用日非省略' : '利用日省略' }}
         </button>
         <button
-          @click="reverseRoutes"
+          @click="store.reverseStationsAndRoutes()"
           class="button button-control"
         >
           発着逆転
@@ -130,7 +130,7 @@
           経路
         </h3>
         <div
-          v-for="(route, routeIndex) in routes"
+          v-for="(route, routeIndex) in store.routes"
           :key="routeIndex"
           class="grid grid-cols-12 gap-4"
         >
@@ -139,7 +139,7 @@
               経路数: {{ routeIndex + 1 }}
             </p>
             <button
-              @click="deleteRoute(routeIndex)"
+              @click="store.deleteRoute(routeIndex)"
               class="delete"
               tabindex="-1"
             >
@@ -156,7 +156,7 @@
               placeholder="路線名"
               class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab.native="onKeyupTab(routeIndex)"
-              @keydown.shift.enter.native="addRoute(routeIndex)"
+              @keydown.shift.enter.native="store.addRoute(routeIndex)"
             >
           </div>
           <div class="col-span-5">
@@ -169,20 +169,20 @@
               placeholder="接続駅"
               class="input mt-1 px-3 py-2 block w-full rounded-md"
               @keydown.tab="onKeyupTab(routeIndex)"
-              @keydown.shift.enter="addRoute(routeIndex)"
+              @keydown.shift.enter="store.addRoute(routeIndex)"
             >
           </div>
         </div>
       </div>
       <div class="col-span-2">
         <button
-          @click="addRoute(-1)"
+          @click="store.addRoute(-1)"
           class="button button-control"
         >
           経路追加
         </button>
         <button
-          @click="removeEmptyRoutes"
+          @click="store.deleteEmptyRoutes()"
           class="button button-danger-light"
         >
           空経路削除
@@ -194,14 +194,14 @@
           備考
         </span>
         <textarea
-          v-model="notes"
+          v-model="store.notes"
           placeholder="備考"
           class="input mt-1 px-3 py-2 block w-full rounded-md"
         ></textarea>
       </div>
       <div class="col-span-2">
         <button
-          @click="notes = ''"
+          @click="store.resetNotes()"
           class="button button-danger-light"
         >
           備考クリア
@@ -257,11 +257,6 @@ export default defineComponent({
     const createRoute = (): Route => {
       return { line: '', station: '' };
     };
-    const routes = ref<Route[]>([createRoute()]);
-    const notes = ref<string>('');
-    const valuedRoutes = computed<Route[]>(() => {
-      return routes.value.filter((route) => route.line.trim() !== '');
-    });
     const setDate = (addDate: number) => {
       if (store.skipDate) {
         alert('利用日省略が設定されています。');
@@ -284,32 +279,9 @@ export default defineComponent({
         store.useDate();
       }
     };
-    const reverseRoutes = () => {
-      store.reverseStations();
-      removeEmptyRoutes();
-      routes.value = routes.value.reverse().map((route, index, orig) => {
-        route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
-        return route;
-      });
-    };
-    const addRoute = (index: number) => {
-      if (index <= -1) {
-        routes.value.push(createRoute());
-      } else {
-        routes.value.splice(index + 1, 0, createRoute());
-      }
-    };
-    const deleteRoute = (index: number) => routes.value.splice(index, 1);
-    const removeEmptyRoutes = () => {
-      const newRoutes = routes.value.filter(route => {
-        return route.line.trim() !== '' || route.station.trim() !== '';
-      });
-      routes.value = newRoutes.length === 0 ? [createRoute()] : newRoutes;
-    };
-    const removeAllRoutes = () => (routes.value = [createRoute()]);
     const onKeyupTab = (index: number) => {
-      if (routes.value.length - 1 === index) {
-        addRoute(-1);
+      if (store.routes.length - 1 === index) {
+        store.addRoute(-1);
       }
     };
     const output = computed<string>(() => {
@@ -318,9 +290,9 @@ export default defineComponent({
         store.skipDate ? null : `利用開始日: ${store.month}月${store.day}日`,
         `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
-      const routesOutput = new DefaultFormatter(valuedRoutes.value).format();
+      const routesOutput = new DefaultFormatter(store.valuedRoutes).format();
       const content = `経由: ${routesOutput}`;
-      const footer = notes.value.trim() === '' ? '' : `備考: ${notes.value.trim()}`;
+      const footer = store.notes === '' ? '' : `備考: ${store.notes.trim()}`;
       return `${header}\n\n${content}\n\n${footer}`.trim();
     });
     const copyOutput = () => {
@@ -348,16 +320,9 @@ export default defineComponent({
       types,
       removeAllSettings,
       createRoute,
-      routes,
-      notes,
       setDate,
       setUndefinedDate,
       setSkipDate,
-      reverseRoutes,
-      addRoute,
-      deleteRoute,
-      removeEmptyRoutes,
-      removeAllRoutes,
       onKeyupTab,
       output,
       copyOutput,

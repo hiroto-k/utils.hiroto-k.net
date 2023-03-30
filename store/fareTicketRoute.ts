@@ -17,7 +17,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     month: '',
     day: '',
     skipDate: false,
-    routes: [],
+    routes: [createRoute()],
     routes1: [],
     routes2: [],
     departure: '',
@@ -64,11 +64,14 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       this.month = undefinedDate;
       this.day = undefinedDate;
     },
+    createRoute(): Route {
+      return { line: '', station: '' };
+    },
     addRoute (index: number): void {
       if (index <= -1) {
-        this.routes.push(createRoute());
+        this.routes.push(this.createRoute());
       } else {
-        this.routes.splice(index + 1, 0, createRoute());
+        this.routes.splice(index + 1, 0, this.createRoute());
       }
     },
     deleteRoute (index: number): void {
@@ -78,10 +81,10 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       const newRoutes = this.routes.filter(route => {
         return route.line.trim() !== '' || route.station.trim() !== '';
       });
-      this.routes = newRoutes.length === 0 ? [createRoute()] : newRoutes;
+      this.routes = newRoutes.length === 0 ? [this.createRoute()] : newRoutes;
     },
     deleteAllRoutes(): void {
-      this.routes = [createRoute()]
+      this.routes = [this.createRoute()]
     },
     reverseRoutes (): void {
       this.deleteEmptyRoutes();
@@ -89,6 +92,10 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
         route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
         return route;
       });
+    },
+    reverseStationsAndRoutes(): void {
+      this.reverseStations();
+      this.reverseRoutes();
     },
     setDeparture (departure: string): void {
       this.departure = departure;

@@ -28,11 +28,13 @@ export interface FareTicketRouteStoreActions {
   useDate(): void
   setDate(addDate: number): void
   setUndefinedDate(): void
+  createRoute(): Route
   addRoute(index: number): void
   deleteRoute(index: number): void
   deleteEmptyRoutes(): void
   deleteAllRoutes(): void
   reverseRoutes(): void
+  reverseStationsAndRoutes(): void
   setDeparture(departure: string): void
   setVia(via: string): void
   setDestination(destination: string): void
