@@ -13,6 +13,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     departure: '',
     via: '',
     destination: '',
+    notes: '',
   }),
   actions: {
     setType (type: TicketType): void {
@@ -61,6 +62,9 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       this.departure = '';
       this.via = '';
       this.destination = '';
+    },
+    resetNotes (): void {
+      this.notes = '';
     },
   },
 });

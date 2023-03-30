@@ -12,6 +12,7 @@ export interface FareTicketRouteStore {
   departure: string
   via: string
   destination: string
+  notes: string
 }
 
 export type FareTicketRouteStoreGetters = _GettersTree<FareTicketRouteStore>
@@ -29,6 +30,7 @@ export interface FareTicketRouteStoreActions {
   setVia(via: string): void
   setDestination(destination: string): void
   resetStations(): void
+  resetNotes(): void
 }
 
 export interface QrCodeGeneratorState {
