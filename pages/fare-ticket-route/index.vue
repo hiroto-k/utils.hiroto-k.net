@@ -18,7 +18,7 @@
               券種
             </label>
             <select
-              v-model="type"
+              v-model="store.type"
               id="type"
               class="input rounded-lg block w-full p-2.5"
             >
@@ -37,7 +37,7 @@
             </label>
             <div class="flex">
               <input
-                v-model="month"
+                v-model="store.month"
                 type="text"
                 class="input rounded-none block flex-1 w-full p-2.5 rounded-l-lg"
                 placeholder="月"
@@ -46,7 +46,7 @@
                 月
               </span>
               <input
-                v-model="day"
+                v-model="store.day"
                 type="text"
                 class="input rounded-none block flex-1 w-full p-2.5"
                 placeholder="日"
@@ -61,7 +61,7 @@
               発駅
             </label>
             <input
-              v-model="departure"
+              v-model="store.departure"
               type="text"
               class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="発駅"
@@ -72,7 +72,7 @@
               着駅
             </label>
             <input
-              v-model="destination"
+              v-model="store.destination"
               type="text"
               class="input mt-1 px-3 py-2 shadow-sm block w-full rounded-md"
               placeholder="着駅"
@@ -109,7 +109,7 @@
           @click="setSkipDate"
           class="button button-control"
         >
-          {{ skipDate ? '利用日非省略' : '利用日省略' }}
+          {{ store.skipDate ? '利用日非省略' : '利用日省略' }}
         </button>
         <button
           @click="reverseRoutes"
@@ -233,31 +233,28 @@
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { Route } from '~/types';
+import { useFareTicketRoute } from '../../store/fareTicketRoute';
+import { TicketType } from '../../types';
 
 export default defineComponent({
   head: {},
   setup () {
     const title = ref<string>('乗車券の経路作成');
     const description = ref<string>('複雑な経路の乗車券を窓口で作る際に紙に書く経路を作るツール');
+    const store = useFareTicketRoute();
 
-    const types = [
+    const types: TicketType[] = [
       '片道乗車券',
       '往復乗車券',
-      '連続乗車券 (連続1)',
-      '連続乗車券 (連続2)',
+      '連続乗車券',
+      '往復乗車券(別線)',
     ];
-    const type = ref<string>('片道乗車券');
-    const month = ref<string>('');
-    const day = ref<string>('');
-    const skipDate = ref<boolean>(false);
     const departure = ref<string>('');
     const destination = ref<string>('');
     const removeAllSettings = () => {
-      type.value = types[0];
-      skipDate.value = false;
-      [month, day, departure, destination].forEach(ref => {
-        ref.value = '';
-      });
+      store.resetType();
+      store.useDate();
+      store.resetStations();
     };
     const createRoute = (): Route => {
       return { line: '', station: '' };
@@ -268,32 +265,25 @@ export default defineComponent({
       return routes.value.filter((route) => route.line.trim() !== '');
     });
     const setDate = (addDate: number) => {
-      if (skipDate.value) {
+      if (store.skipDate) {
         alert('利用日省略が設定されています。');
       } else {
-        const today = new Date();
-        today.setDate(today.getDate() + addDate);
-        month.value = (today.getMonth() + 1).toString();
-        day.value = today.getDate().toString();
+        store.setDate(addDate);
       }
     };
     const setUndefinedDate = () => {
-      if (skipDate.value) {
+      if (store.skipDate) {
         alert('利用日省略が設定されています。');
       } else {
-        const undefinedDate = '     ';
-        month.value = undefinedDate;
-        day.value = undefinedDate;
+        store.setUndefinedDate();
       }
     };
     const setSkipDate = () => {
-      skipDate.value = !skipDate.value;
-      if (skipDate.value) {
-        month.value = '省略';
-        day.value = '省略';
+      store.skipDate = !store.skipDate;
+      if (store.skipDate) {
+        store.unUseDate();
       } else {
-        month.value = '';
-        day.value = '';
+        store.useDate();
       }
     };
     const reverseRoutes = () => {
@@ -328,9 +318,9 @@ export default defineComponent({
     };
     const output = computed<string>(() => {
       const header = [
-        type.value,
-        skipDate.value ? null : `利用開始日: ${month.value}月${day.value}日`,
-        `区間: ${departure.value}→${destination.value}`,
+        store.type,
+        store.skipDate ? null : `利用開始日: ${store.month}月${store.day}日`,
+        `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
       const routesOutput = new DefaultFormatter(valuedRoutes.value).format();
       const content = `経由: ${routesOutput}`;
@@ -358,13 +348,8 @@ export default defineComponent({
     return {
       title,
       description,
+      store,
       types,
-      type,
-      month,
-      day,
-      skipDate,
-      departure,
-      destination,
       removeAllSettings,
       createRoute,
       routes,
