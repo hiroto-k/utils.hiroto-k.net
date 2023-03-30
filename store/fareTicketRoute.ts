@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { FareTicketRouteStore, TicketType } from '../types';
+import { FareTicketRouteStore, TicketType, FareTicketRouteStoreActions, FareTicketRouteStoreGetters } from '../types';
 
-export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRouteStore>('FareTicketRoute', {
+export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRouteStore, FareTicketRouteStoreGetters, FareTicketRouteStoreActions>('FareTicketRoute', {
   state: () => ({
     type: '片道乗車券',
     month: '',
