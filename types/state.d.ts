@@ -28,7 +28,7 @@ export interface FareTicketRouteStoreActions {
   setUndefinedDate(): void
   addRoute(index: number): void
   deleteRoute(index: number): void
-  deleteRmptyRoutes(): void
+  deleteEmptyRoutes(): void
   deleteAllRoutes(): void
   reverseRoutes(): void
   setDeparture(departure: string): void

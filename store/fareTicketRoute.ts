@@ -69,7 +69,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     deleteRoute (index: number): void {
       this.routes.splice(index, 1);
     },
-    deleteRmptyRoutes (): void {
+    deleteEmptyRoutes (): void {
       const newRoutes = this.routes.filter(route => {
         return route.line.trim() !== '' || route.station.trim() !== '';
       });
