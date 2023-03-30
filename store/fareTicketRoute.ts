@@ -58,6 +58,11 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     setDestination (destination: string): void {
       this.destination = destination;
     },
+    reverseStations (): void {
+      const newDeparture = this.destination;
+      this.destination = this.departure;
+      this.departure = newDeparture;
+    },
     resetStations (): void {
       this.departure = '';
       this.via = '';

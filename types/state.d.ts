@@ -29,6 +29,7 @@ export interface FareTicketRouteStoreActions {
   setDeparture(departure: string): void
   setVia(via: string): void
   setDestination(destination: string): void
+  reverseStations(): void
   resetStations(): void
   resetNotes(): void
 }
