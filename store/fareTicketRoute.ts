@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import {
   FareTicketRouteStore,
-  TicketType,
   FareTicketRouteStoreActions,
   FareTicketRouteStoreGetters,
   Route,
