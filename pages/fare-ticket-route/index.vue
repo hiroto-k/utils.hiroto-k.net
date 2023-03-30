@@ -224,6 +224,19 @@
         >
           コピー
         </button>
+        <select
+          v-model="usingFormatter"
+          id="formatter"
+          class="button button-control"
+        >
+          <option
+            v-for="(formatterObject, formattersIndex) in formatters"
+            :value="formatterObject.value"
+            :key="formattersIndex"
+          >
+            {{ formatterObject.name }}
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -232,9 +245,9 @@
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
-import { Route } from '~/types';
+import { LikeMR52Formatter } from '../../lib/fare-ticket-route/formatter/like-mr52-formatter';
 import { useFareTicketRoute } from '../../store/fareTicketRoute';
-import { TicketType } from '../../types';
+import { Formatter, TicketType } from '../../types';
 
 export default defineComponent({
   head: {},
@@ -249,13 +262,24 @@ export default defineComponent({
       '連続乗車券',
       '往復乗車券(別線)',
     ];
+    const formatters = ref([
+      {
+        name: 'デフォルト',
+        value: 'default',
+        create: (routes) => new DefaultFormatter(routes),
+      },
+      {
+        name: 'MR52風',
+        value: 'mr52',
+        create: (routes) => new LikeMR52Formatter(routes),
+      },
+    ]);
+    const usingFormatter = ref<string>('default');
+
     const removeAllSettings = () => {
       store.resetType();
       store.useDate();
       store.resetStations();
-    };
-    const createRoute = (): Route => {
-      return { line: '', station: '' };
     };
     const setDate = (addDate: number) => {
       if (store.skipDate) {
@@ -290,9 +314,13 @@ export default defineComponent({
         store.skipDate ? null : `利用開始日: ${store.month}月${store.day}日`,
         `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
-      const routesOutput = new DefaultFormatter(store.valuedRoutes).format();
+
+      const formatter: Formatter = formatters.value.find(f => f.value === usingFormatter.value).create(store.valuedRoutes);
+      const routesOutput = formatter.format();
       const content = `経由: ${routesOutput}`;
+
       const footer = store.notes === '' ? '' : `備考: ${store.notes.trim()}`;
+
       return `${header}\n\n${content}\n\n${footer}`.trim();
     });
     const copyOutput = () => {
@@ -318,8 +346,9 @@ export default defineComponent({
       description,
       store,
       types,
+      formatters,
+      usingFormatter,
       removeAllSettings,
-      createRoute,
       setDate,
       setUndefinedDate,
       setSkipDate,
