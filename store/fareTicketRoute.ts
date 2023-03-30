@@ -64,7 +64,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       this.month = undefinedDate;
       this.day = undefinedDate;
     },
-    createRoute(): Route {
+    createRoute (): Route {
       return { line: '', station: '' };
     },
     addRoute (index: number): void {
@@ -83,8 +83,8 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
       });
       this.routes = newRoutes.length === 0 ? [this.createRoute()] : newRoutes;
     },
-    deleteAllRoutes(): void {
-      this.routes = [this.createRoute()]
+    deleteAllRoutes (): void {
+      this.routes = [this.createRoute()];
     },
     reverseRoutes (): void {
       this.deleteEmptyRoutes();
@@ -93,7 +93,7 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
         return route;
       });
     },
-    reverseStationsAndRoutes(): void {
+    reverseStationsAndRoutes (): void {
       this.reverseStations();
       this.reverseRoutes();
     },
