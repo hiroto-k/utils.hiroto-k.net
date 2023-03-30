@@ -246,7 +246,6 @@
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { LikeMR52Formatter } from '../../lib/fare-ticket-route/formatter/like-mr52-formatter';
-import { Route } from '~/types';
 import { useFareTicketRoute } from '../../store/fareTicketRoute';
 import { Formatter, TicketType } from '../../types';
 
