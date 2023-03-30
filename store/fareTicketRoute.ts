@@ -26,97 +26,97 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     notes: '',
   }),
   getters: {
-    valuedRoutes (): Route[] {
+    valuedRoutes () {
       return this.routes.filter((route) => route.line.trim() !== '');
     },
   },
   actions: {
-    setType (type: TicketType): void {
+    setType (type) {
       this.type = type;
     },
-    resetType (): void {
+    resetType () {
       this.type = '片道乗車券';
     },
-    setMonth (month: string): void {
+    setMonth (month) {
       this.month = month;
     },
-    setDay (day: string): void {
+    setDay (day) {
       this.day = day;
     },
-    unUseDate (): void {
+    unUseDate () {
       this.skipDate = true;
       this.month = '省略';
       this.day = '省略';
     },
-    useDate (): void {
+    useDate () {
       this.skipDate = false;
       this.month = '';
       this.day = '';
     },
-    setDate (addDate: number) {
+    setDate (addDate) {
       const today = new Date();
       today.setDate(today.getDate() + addDate);
       this.month = (today.getMonth() + 1).toString();
       this.day = today.getDate().toString();
     },
-    setUndefinedDate (): void {
+    setUndefinedDate () {
       const undefinedDate = '     ';
       this.month = undefinedDate;
       this.day = undefinedDate;
     },
-    createRoute (): Route {
+    createRoute () {
       return { line: '', station: '' };
     },
-    addRoute (index: number): void {
+    addRoute (index) {
       if (index <= -1) {
         this.routes.push(this.createRoute());
       } else {
         this.routes.splice(index + 1, 0, this.createRoute());
       }
     },
-    deleteRoute (index: number): void {
+    deleteRoute (index) {
       this.routes.splice(index, 1);
     },
-    deleteEmptyRoutes (): void {
+    deleteEmptyRoutes () {
       const newRoutes = this.routes.filter(route => {
         return route.line.trim() !== '' || route.station.trim() !== '';
       });
       this.routes = newRoutes.length === 0 ? [this.createRoute()] : newRoutes;
     },
-    deleteAllRoutes (): void {
+    deleteAllRoutes () {
       this.routes = [this.createRoute()];
     },
-    reverseRoutes (): void {
+    reverseRoutes () {
       this.deleteEmptyRoutes();
       this.routes = this.routes.reverse().map((route, index, orig) => {
         route.station = orig[index + 1] == null ? '' : orig[index + 1].station;
         return route;
       });
     },
-    reverseStationsAndRoutes (): void {
+    reverseStationsAndRoutes () {
       this.reverseStations();
       this.reverseRoutes();
     },
-    setDeparture (departure: string): void {
+    setDeparture (departure) {
       this.departure = departure;
     },
-    setVia (via: string): void {
+    setVia (via) {
       this.via = via;
     },
-    setDestination (destination: string): void {
+    setDestination (destination) {
       this.destination = destination;
     },
-    reverseStations (): void {
+    reverseStations () {
       const newDeparture = this.destination;
       this.destination = this.departure;
       this.departure = newDeparture;
     },
-    resetStations (): void {
+    resetStations () {
       this.departure = '';
       this.via = '';
       this.destination = '';
     },
-    resetNotes (): void {
+    resetNotes () {
       this.notes = '';
     },
   },
