@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { FareTicketRouteStore, TicketType } from '../types';
 
-export const useQrCodeGeneratorStore = defineStore<'FareTicketRoute', FareTicketRouteStore>('FareTicketRoute', {
+export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRouteStore>('FareTicketRoute', {
   state: () => ({
     type: '片道乗車券',
     month: '',
