@@ -250,7 +250,13 @@ import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { LikeMR52Formatter } from '../../lib/fare-ticket-route/formatter/like-mr52-formatter';
 import { useFareTicketRoute } from '../../store/fareTicketRoute';
-import { Formatter, TicketType } from '../../types';
+import { Formatter, Route, TicketType } from '../../types';
+
+interface FormatterSet {
+  name: string
+  value: string
+  create: (routes: Route[])=> Formatter
+}
 
 export default defineComponent({
   head: {},
@@ -265,7 +271,7 @@ export default defineComponent({
       '連続乗車券',
       '別線往復乗車券',
     ];
-    const formatters = ref([
+    const formatterSets = ref<FormatterSet[]>([
       {
         name: 'デフォルト',
         value: 'default',
@@ -318,7 +324,7 @@ export default defineComponent({
         `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
 
-      const formatter: Formatter = formatters.value.find(f => f.value === usingFormatter.value).create(store.valuedRoutes);
+      const formatter: Formatter = formatterSets.value.find(f => f.value === usingFormatter.value).create(store.valuedRoutes);
       const routesOutput = formatter.format();
       const content = `経由: ${routesOutput}`;
 
@@ -349,7 +355,7 @@ export default defineComponent({
       description,
       store,
       types,
-      formatters,
+      formatters: formatterSets,
       usingFormatter,
       removeAllSettings,
       setDate,
