@@ -187,6 +187,12 @@
         >
           空経路削除
         </button>
+        <button
+          @click="store.deleteAllRoutes()"
+          class="button button-danger"
+        >
+          経路全削除
+        </button>
         <p class="text-base">
           Tips: 任意の経路でShift+Enterを押すと下に経路追加，最後の経路でTabを押すと最後に経路追加
         </p>
