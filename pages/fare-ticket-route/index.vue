@@ -233,11 +233,11 @@
           class="button button-control"
         >
           <option
-            v-for="(formatterObject, formattersIndex) in formatters"
-            :value="formatterObject.value"
-            :key="formattersIndex"
+            v-for="(formatterSet, formatterSetsIndex) in formatterSets"
+            :value="formatterSet.value"
+            :key="formatterSetsIndex"
           >
-            {{ formatterObject.name }}
+            {{ formatterSet.name }}
           </option>
         </select>
       </div>
@@ -355,7 +355,7 @@ export default defineComponent({
       description,
       store,
       types,
-      formatters: formatterSets,
+      formatterSets,
       usingFormatter,
       removeAllSettings,
       setDate,
