@@ -13,7 +13,7 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "3.0.0",
+    "@nuxt/typescript-runtime": "3.0.1",
     "@nuxtjs/composition-api": "0.33.1",
     "@pinia/nuxt": "0.2.1",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
