@@ -187,6 +187,12 @@
         >
           空経路削除
         </button>
+        <button
+          @click="store.deleteAllRoutes()"
+          class="button button-danger"
+        >
+          経路全削除
+        </button>
         <p class="text-base">
           Tips: 任意の経路でShift+Enterを押すと下に経路追加，最後の経路でTabを押すと最後に経路追加
         </p>
@@ -233,11 +239,11 @@
           class="button button-control"
         >
           <option
-            v-for="(formatterObject, formattersIndex) in formatters"
-            :value="formatterObject.value"
-            :key="formattersIndex"
+            v-for="(formatterSet, formatterSetsIndex) in formatterSets"
+            :value="formatterSet.value"
+            :key="formatterSetsIndex"
           >
-            {{ formatterObject.name }}
+            {{ formatterSet.name }}
           </option>
         </select>
       </div>
@@ -250,7 +256,13 @@ import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { LikeMR52Formatter } from '../../lib/fare-ticket-route/formatter/like-mr52-formatter';
 import { useFareTicketRoute } from '../../store/fareTicketRoute';
-import { Formatter, TicketType } from '../../types';
+import { Formatter, Route, TicketType } from '../../types';
+
+interface FormatterSet {
+  name: string
+  value: string
+  create: (routes: Route[])=> Formatter
+}
 
 export default defineComponent({
   head: {},
@@ -263,9 +275,9 @@ export default defineComponent({
       '片道乗車券',
       '往復乗車券',
       '連続乗車券',
-      '往復乗車券(別線)',
+      '別線往復乗車券',
     ];
-    const formatters = ref([
+    const formatterSets = ref<FormatterSet[]>([
       {
         name: 'デフォルト',
         value: 'default',
@@ -318,7 +330,7 @@ export default defineComponent({
         `区間: ${store.departure}→${store.destination}`,
       ].filter((el) => el != null).join('\n\n');
 
-      const formatter: Formatter = formatters.value.find(f => f.value === usingFormatter.value).create(store.valuedRoutes);
+      const formatter: Formatter = formatterSets.value.find(f => f.value === usingFormatter.value).create(store.valuedRoutes);
       const routesOutput = formatter.format();
       const content = `経由: ${routesOutput}`;
 
@@ -349,7 +361,7 @@ export default defineComponent({
       description,
       store,
       types,
-      formatters,
+      formatterSets,
       usingFormatter,
       removeAllSettings,
       setDate,

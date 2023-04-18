@@ -20,10 +20,7 @@ export interface FareTicketRouteStoreGetters extends _GettersTree<FareTicketRout
 }
 
 export interface FareTicketRouteStoreActions {
-  setType(type: TicketType): void
   resetType(): void
-  setMonth(month: string): void
-  setDay(day: string): void
   unUseDate(): void
   useDate(): void
   setDate(addDate: number): void
@@ -35,9 +32,6 @@ export interface FareTicketRouteStoreActions {
   deleteAllRoutes(): void
   reverseRoutes(): void
   reverseStationsAndRoutes(): void
-  setDeparture(departure: string): void
-  setVia(via: string): void
-  setDestination(destination: string): void
   reverseStations(): void
   resetStations(): void
   resetNotes(): void

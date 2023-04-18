@@ -30,17 +30,8 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     },
   },
   actions: {
-    setType (type) {
-      this.type = type;
-    },
     resetType () {
       this.type = '片道乗車券';
-    },
-    setMonth (month) {
-      this.month = month;
-    },
-    setDay (day) {
-      this.day = day;
     },
     unUseDate () {
       this.skipDate = true;
@@ -95,15 +86,6 @@ export const useFareTicketRoute = defineStore<'FareTicketRoute', FareTicketRoute
     reverseStationsAndRoutes () {
       this.reverseStations();
       this.reverseRoutes();
-    },
-    setDeparture (departure) {
-      this.departure = departure;
-    },
-    setVia (via) {
-      this.via = via;
-    },
-    setDestination (destination) {
-      this.destination = destination;
     },
     reverseStations () {
       const newDeparture = this.destination;
