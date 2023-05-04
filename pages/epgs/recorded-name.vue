@@ -3,14 +3,11 @@
     <h1 class="title" v-text="title">
     </h1>
 
-    <p class="subtitle" v-text="description">
-    </p>
-
     <div class="xl:grid xl:grid-cols-12 xl:gap-4">
       <div class="col-span-12">
-        <h3 class="section-title">
+        <h2 class="section-title">
           設定
-        </h3>
+        </h2>
       </div>
 
       <div class="col-span-2">
@@ -90,9 +87,9 @@
         </div>
       </div>
       <div class="col-span-12">
-        <h3 class="section-title">
+        <h2 class="section-title">
           出力
-        </h3>
+        </h2>
         <button
           @click="copyOutput"
           class="button button-control"
