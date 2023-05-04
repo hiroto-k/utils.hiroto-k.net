@@ -16,7 +16,7 @@
         </label>
         <input
           v-model="year"
-          type="text"
+          type="number"
           class="input rounded-md block w-full p-2.5"
           placeholder="西暦4桁"
         >
@@ -190,7 +190,7 @@ export default defineComponent({
     const title = ref<string>('録画サーバーの保存先のパスを生成');
     const description = ref<string>('録画サーバーの保存先のパスを生成する');
 
-    const year = ref<string>(String(new Date().getFullYear()));
+    const year = ref<number>(new Date().getFullYear());
     const seasonsList = ref<Season[]>([
       {
         name: '冬アニメ',
