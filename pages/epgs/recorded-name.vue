@@ -144,6 +144,9 @@
               <li>
                 秋アニメは<span class="code-block-inline">04_autumn</span>
               </li>
+              <li>
+                連続した複数のシーズンに跨がって放送する場合，初回放送の時期を利用し，時期が変わっても同じディレクトリに保存する
+              </li>
             </ul>
           </li>
           <li>アニメ以外の番組では<span class="code-block-inline">10_other</span>を利用する</li>
