@@ -17,7 +17,7 @@
         <input
           v-model="year"
           type="text"
-          class="input rounded-md block flex-1 p-2.5"
+          class="input rounded-md block w-full p-2.5"
           placeholder="西暦4桁"
         >
       </div>
