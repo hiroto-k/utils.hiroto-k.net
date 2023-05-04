@@ -56,6 +56,10 @@ export default defineComponent({
         title: '乗車券の経路作成',
         to: '/fare-ticket-route',
       },
+      {
+        title: '録画サーバーの保存先のパスを生成',
+        to: '/epgs/recorded-name',
+      },
     ]);
     const footerTitle = ref<string>('© 2019 hiroxto');
     const footerLinksTitle = ref<string>('Page links');
