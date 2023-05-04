@@ -101,6 +101,71 @@
           class="bg-gray-100 p-5 rounded-md"
         ></pre>
       </div>
+      <div class="col-span-12">
+        <h2 class="section-title">
+          保存先のルール
+        </h2>
+
+        <h3 class="subsection-title">
+          基本構成
+        </h3>
+        <ul class="rule-list">
+          <li>
+            <span class="code-block-inline">
+              年/放送時期/番組名
+            </span>
+          </li>
+        </ul>
+        <h3 class="subsection-title">
+          年
+        </h3>
+        <ul class="rule-list">
+          <li>
+            西暦を4桁で書く
+          </li>
+        </ul>
+        <h3 class="subsection-title">
+          シーズン
+        </h3>
+        <ul class="rule-list">
+          <li>
+            アニメの場合は以下のルールを利用する
+            <ul class="pl-5 list-disc list-inside">
+              <li>プレフィクスは00番台を利用する</li>
+              <li>
+                冬アニメは<span class="code-block-inline">01_winter</span>
+              </li>
+              <li>
+                春アニメは<span class="code-block-inline">02_spring</span>
+              </li>
+              <li>
+                夏アニメは<span class="code-block-inline">03_summer</span>
+              </li>
+              <li>
+                秋アニメは<span class="code-block-inline">04_autumn</span>
+              </li>
+            </ul>
+          </li>
+          <li>アニメ以外の番組では<span class="code-block-inline">10_other</span>を利用する</li>
+        </ul>
+        <h3 class="subsection-title">
+          番組名
+        </h3>
+        <ul class="rule-list">
+          <li>
+            基本的にアルファベットで書く
+          </li>
+          <li>
+            番組名のアルファベットは公式サイトのドメインやSNSのアカウント名などを利用する
+          </li>
+          <li>
+            番組が再放送の場合，頭に<span class="code-block-inline">repeat_</span>を付与する
+          </li>
+          <li>
+            特番などで分類が不要な場合，上記ルールを適用せずに<span class="code-block-inline">10_other</span>を利用する
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -214,5 +279,17 @@ export default defineComponent({
 
 .section-title {
   @apply text-2xl my-5;
+}
+
+.subsection-title {
+  @apply text-lg text-gray-900 my-2;
+}
+
+.rule-list {
+  @apply text-gray-900 list-disc list-inside;
+}
+
+.code-block-inline {
+  @apply bg-gray-200 text-rose-600 p-1;
 }
 </style>
