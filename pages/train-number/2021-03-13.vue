@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import TrainNumberPage from '~/components/pages/train-number/TrainNumberPage';
-import contentSource from '~/assets/train-number/2021-03-13.md';
+import contentSource from '~/assets/train-number/2021-03-13.md?raw';
 
 export default defineNuxtComponent({
   name: 'TrainNumber20210313Page',
