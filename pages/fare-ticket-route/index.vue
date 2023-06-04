@@ -382,7 +382,7 @@ export default defineComponent({
 }
 
 .button {
-  @apply rounded-md px-2 py-2 mb-2;
+  @apply rounded-md px-2 py-2 mb-2 mr-1;
 }
 
 .button-control {
