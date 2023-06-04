@@ -25,10 +25,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
 import { Link } from '~/types';
 
-export default defineComponent({
+export default defineNuxtComponent({
   name: 'PageFooter',
   setup () {
     const allPageLinks = ref<Link[]>([

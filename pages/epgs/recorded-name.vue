@@ -174,8 +174,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
-
 type SeasonName = '冬アニメ' | '春アニメ' | '夏アニメ' | '秋アニメ' | 'アニメ以外';
 type SeasonValue = '01_winter' | '02_spring' | '03_summer' | '04_autumn' | '10_other';
 
@@ -184,7 +182,7 @@ interface Season {
   value: SeasonValue
 }
 
-export default defineComponent({
+export default defineNuxtComponent({
   head: {},
   setup () {
     const title = ref<string>('録画サーバーの保存先のパスを生成');
@@ -238,7 +236,7 @@ export default defineComponent({
         });
     };
 
-    useMeta(() => ({
+    useHead(() => ({
       title: title.value,
       meta: [
         { hid: 'description', name: 'description', content: description.value },

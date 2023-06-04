@@ -30,7 +30,6 @@
 
 <script lang="ts">
 import { QrCodeRenderAsOptionValue } from '~/types';
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
 
 interface RenderAsFormOption {

@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
 import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
 
 export default defineComponent({

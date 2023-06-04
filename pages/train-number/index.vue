@@ -12,11 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import LinksMenu from '~/components/ui/LinksMenu';
 import { Link } from '~/types';
 
-export default defineComponent({
+export default defineNuxtComponent({
   head: {},
   setup () {
     const title = ref<string>('列車番号メモ');
@@ -40,7 +39,7 @@ export default defineComponent({
       },
     ]);
 
-    useMeta(() => ({
+    useHead(() => ({
       title: title.value,
       meta: [
         { hid: 'description', name: 'description', content: description.value },

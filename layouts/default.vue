@@ -11,10 +11,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
 import PageFooter from '~/components/layouts/PageFooter';
 
-export default defineComponent({
+export default defineNuxtComponent({
   components: {
     PageFooter,
   },

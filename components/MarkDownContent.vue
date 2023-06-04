@@ -4,7 +4,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api';
 import { marked } from 'marked';
 
 export default defineComponent({
@@ -13,14 +12,14 @@ export default defineComponent({
     source: {
       required: true,
       type: String,
-    } as PropType<string>,
+    }, // as PropType<string>,
     options: {
       required: false,
       type: Object,
       default (): marked.MarkedOptions {
         return {};
       },
-    } as PropType<marked.MarkedOptions>,
+    }, // as PropType<marked.MarkedOptions>,
   },
   setup (props) {
     const markedContent = computed<string>(() => marked(props.source, props.options));

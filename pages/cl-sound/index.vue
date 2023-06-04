@@ -17,17 +17,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useMeta, ref } from '@nuxtjs/composition-api';
 import PlaySound from '~/components/pages/cl-sound/PlaySound';
 import Specification from '~/components/pages/cl-sound/Specification';
 
-export default defineComponent({
+export default defineNuxtComponent({
   head: {},
   setup () {
     const title = ref<string>('EMVコンタクトレスのサウンドをWeb Audio APIで再生');
     const description = ref<string>('EMVコンタクトレスのサウンドをWeb Audio APIで再生');
 
-    useMeta(() => ({
+    useHead(() => ({
       title: title.value,
       meta: [
         { hid: 'description', name: 'description', content: description.value },

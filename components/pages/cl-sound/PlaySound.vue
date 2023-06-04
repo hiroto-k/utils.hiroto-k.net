@@ -18,8 +18,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api';
-
 export default defineComponent({
   name: 'PlaySound',
   setup () {

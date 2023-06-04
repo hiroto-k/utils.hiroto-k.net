@@ -7,11 +7,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import TrainNumberPage from '~/components/pages/train-number/TrainNumberPage';
 import contentSource from '~/assets/train-number/2021-03-13.md';
 
-export default defineComponent({
+export default defineNuxtComponent({
   name: 'TrainNumber20210313Page',
   components: {
     TrainNumberPage,

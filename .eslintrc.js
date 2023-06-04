@@ -9,6 +9,7 @@ module.exports = {
   },
   extends: ['@hiroxto', '@hiroxto/eslint-config/vue'],
   rules: {
+    'no-undef': 'off',
     'vue/multi-word-component-names': 'off',
   },
 };

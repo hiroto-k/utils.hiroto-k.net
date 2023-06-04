@@ -38,7 +38,6 @@ import { numeric, between } from 'vee-validate/dist/rules';
 import ja from 'vee-validate/dist/locale/ja.json';
 import TrainNumberCalc from '~/lib/TrainNumberCalc';
 import { TrainNumberType } from '~/types';
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 
 ja.messages['not-starts-with-zero'] = '{_field_}は不正な値です。';
 extend('numeric', numeric);

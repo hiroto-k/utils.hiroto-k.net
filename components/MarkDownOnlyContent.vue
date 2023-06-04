@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropOptions } from '@nuxtjs/composition-api';
 import MarkDownContent from '~/components/MarkDownContent';
 import { marked } from 'marked';
 
@@ -20,14 +19,14 @@ export default defineComponent({
     source: {
       required: true,
       type: String,
-    } as PropOptions<string>,
+    }, // as PropOptions<string>,
     options: {
       required: false,
       type: Object,
       default (): marked.MarkedOptions {
         return {};
       },
-    } as PropOptions<marked.MarkedOptions>,
+    }, // as PropOptions<marked.MarkedOptions>,
   },
   setup () {
     const classNames: string[] = [

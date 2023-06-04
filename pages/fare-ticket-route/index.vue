@@ -252,7 +252,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { LikeMR52Formatter } from '../../lib/fare-ticket-route/formatter/like-mr52-formatter';
 import { useFareTicketRoute } from '../../store/fareTicketRoute';
@@ -349,7 +348,7 @@ export default defineComponent({
         });
     };
 
-    useMeta(() => ({
+    useHead(() => ({
       title: title.value,
       meta: [
         { hid: 'description', name: 'description', content: description.value },
