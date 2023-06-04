@@ -794,30 +794,6 @@
     unimport "^3.0.7"
     untyped "^1.3.2"
 
-"@nuxt/kit@^3.2.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.4.3.tgz#2ab6efb0a4db7b4e5f4d8d7d7e696fa30a6e8771"
-  integrity sha512-aQyzplYFCL292UsVZzlOZOC51ZKYFL0PBihbcPzxTzXQvAfMF8/DQ539kqzqXzxTCcmnUB9ROhIaNUrAeUkFYA==
-  dependencies:
-    "@nuxt/schema" "3.4.3"
-    c12 "^1.4.1"
-    consola "^3.1.0"
-    defu "^6.1.2"
-    globby "^13.1.4"
-    hash-sum "^2.0.0"
-    ignore "^5.2.4"
-    jiti "^1.18.2"
-    knitwork "^1.0.0"
-    lodash.template "^4.5.0"
-    mlly "^1.2.0"
-    pathe "^1.1.0"
-    pkg-types "^1.0.2"
-    scule "^1.0.0"
-    semver "^7.5.0"
-    unctx "^2.3.0"
-    unimport "^3.0.6"
-    untyped "^1.3.2"
-
 "@nuxt/postcss8@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nuxt/postcss8/-/postcss8-1.1.3.tgz#a7f8f6f2a664430bbdd3b175498eb693e0b1b351"
@@ -831,21 +807,6 @@
     postcss-loader "^4.1.0"
     postcss-url "^10.1.1"
     semver "^7.3.4"
-
-"@nuxt/schema@3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.4.3.tgz#106548003b7bbc40428b2af290b31b1e89acffc5"
-  integrity sha512-8bv0/mRDw6THQguSz+cKG5FzDZc2XBkjcc5VZ7yET84r4aWzW9/R274cjlEagFKrw9BDaPEQhnkwpg+kZnpOUA==
-  dependencies:
-    defu "^6.1.2"
-    hookable "^5.5.3"
-    pathe "^1.1.0"
-    pkg-types "^1.0.2"
-    postcss-import-resolver "^2.0.0"
-    std-env "^3.3.2"
-    ufo "^1.1.1"
-    unimport "^3.0.6"
-    untyped "^1.3.2"
 
 "@nuxt/schema@3.5.2":
   version "3.5.2"
@@ -934,13 +895,15 @@
     vite-plugin-checker "^0.6.0"
     vue-bundle-renderer "^1.0.3"
 
-"@nuxtjs/eslint-module@~4.0.0":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-4.0.2.tgz#5d4d83d39e8d34a0b3adfef175e0adddaed35c7b"
-  integrity sha512-Lss37KjO9EZwlrxHcvXWiLZnd/kvw40htqhwKJiA8/IwuVWAFJ6Tu5Hl8iz2V0BN4RU1DIaS1ULQOQycndu3dw==
+"@nuxtjs/eslint-module@~4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-4.1.0.tgz#646b7ac6c7950e9aa778b5ba6b0a88f9dea2f1e6"
+  integrity sha512-lW9ozEjOrnU8Uot3GOAZ/0ThNAds0d6UAp9n46TNxcTvH/MOcAggGbMNs16c0HYT2HlyPQvXORCHQ5+9p87mmw==
   dependencies:
-    "@nuxt/kit" "^3.2.3"
-    eslint-webpack-plugin "^4.0.0"
+    "@nuxt/kit" "^3.5.0"
+    chokidar "^3.5.3"
+    eslint-webpack-plugin "^4.0.1"
+    pathe "^1.1.0"
     vite-plugin-eslint "^1.8.1"
 
 "@nuxtjs/tailwindcss@~6.0.0":
@@ -2999,7 +2962,7 @@ eslint-visitor-keys@^3.3.0, eslint-visitor-keys@^3.4.1:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.4.1.tgz#c22c48f48942d08ca824cc526211ae400478a994"
   integrity sha512-pZnmmLwYzf+kWaM/Qgrvpen51upAktaaiI01nsJD/Yr3lMOdNtq0cxkrrg16w64VtisN6okbs7Q8AfGqj4c9fA==
 
-eslint-webpack-plugin@^4.0.0:
+eslint-webpack-plugin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eslint-webpack-plugin/-/eslint-webpack-plugin-4.0.1.tgz#f0f0e9afff2801d8bd41eac88e5409821ecbaccb"
   integrity sha512-fUFcXpui/FftGx3NzvWgLZXlLbu+m74sUxGEgxgoxYcUtkIQbS6SdNNZkS99m5ycb23TfoNYrDpp1k/CK5j6Hw==
@@ -6630,16 +6593,6 @@ uncrypto@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/uncrypto/-/uncrypto-0.1.2.tgz#225aa7d41a13e4ad07ed837aedfa975a93afa924"
   integrity sha512-kuZwRKV615lEw/Xx3Iz56FKk3nOeOVGaVmw0eg+x4Mne28lCotNFbBhDW7dEBCBKyKbRQiCadEZeNAFPVC5cgw==
-
-unctx@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/unctx/-/unctx-2.3.0.tgz#abb1eaf1f5417d9562b3c43a90aba259a869c96d"
-  integrity sha512-xs79V1T5JEQ/5aQ3j4ipbQEaReMosMz/ktOdsZMEtKv1PfbdRrKY/PaU0CxdspkX3zEink2keQU4nRzAXgui1A==
-  dependencies:
-    acorn "^8.8.2"
-    estree-walker "^3.0.3"
-    magic-string "^0.30.0"
-    unplugin "^1.3.1"
 
 unctx@^2.3.1:
   version "2.3.1"
