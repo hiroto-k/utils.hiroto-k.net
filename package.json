@@ -13,7 +13,7 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
   },
   "dependencies": {
-    "@pinia/nuxt": "0.2.1",
+    "@pinia/nuxt": "~0.4.0",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "cross-env": "7.0.3",
@@ -22,26 +22,21 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
     "nuxt": "3.0.0",
-    "pinia": "^2.0.33",
+    "pinia": "^2.1",
     "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@hiroxto/eslint-config": "1.0.1",
-    "@nuxtjs/eslint-module": "4.0.2",
-    "@nuxtjs/tailwindcss": "^6.6.4",
+    "@nuxtjs/eslint-module": "~4.0.0",
+    "@nuxtjs/tailwindcss": "~6.0.0",
     "@types/marked": "4.0.8",
     "eslint": "8.39.0",
     "eslint-friendly-formatter": "4.0.1",
     "marked": "4.3.0",
-    "qrcode.vue": "1.7.0",
+    "qrcode.vue": "~3.0.0",
     "raw-loader": "4.0.2",
     "sass": "^1.60.0",
     "sass-loader": "10.4.1",
-    "vee-validate": "3.4.15"
-  },
-  "browserslist": [
-    ">0.25%",
-    "not ie 11",
-    "not op_mini all"
-  ]
+    "vee-validate": "~4.0.0"
+  }
 }
