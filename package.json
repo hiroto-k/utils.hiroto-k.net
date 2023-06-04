@@ -13,7 +13,6 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "3.0.1",
     "@pinia/nuxt": "0.2.1",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
@@ -28,7 +27,6 @@
   },
   "devDependencies": {
     "@hiroxto/eslint-config": "1.0.1",
-    "@nuxt/types": "2.16.3",
     "@nuxtjs/eslint-module": "4.0.2",
     "@nuxtjs/tailwindcss": "^6.6.4",
     "@types/marked": "4.0.8",

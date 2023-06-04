@@ -44,16 +44,10 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   buildModules: [
-    ['@nuxt/typescript-build', {
-      typeCheck: true,
-      ignoreNotFoundWarnings: true,
-    }],
-
     '@nuxtjs/tailwindcss',
 
     '@nuxtjs/eslint-module',
 
-    '@nuxtjs/composition-api/module',
     '@pinia/nuxt',
   ],
 
