@@ -5,10 +5,10 @@
   "author": "Hiroto Kitazawa",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "nuxi start",
+    "generate": "nuxi generate",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
   },
