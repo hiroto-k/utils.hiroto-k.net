@@ -5,17 +5,15 @@
   "author": "Hiroto Kitazawa",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "nuxi start",
+    "generate": "nuxi generate",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "3.0.1",
-    "@nuxtjs/composition-api": "0.33.1",
-    "@pinia/nuxt": "0.2.1",
+    "@pinia/nuxt": "~0.4.0",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "cross-env": "7.0.3",
@@ -23,29 +21,22 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
-    "nuxt": "2.16.3",
-    "pinia": "^2.0.33",
+    "nuxt": "3.0.0",
+    "pinia": "^2.1",
     "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@hiroxto/eslint-config": "1.0.1",
-    "@nuxt/types": "2.16.3",
-    "@nuxt/typescript-build": "3.0.1",
-    "@nuxtjs/eslint-module": "4.0.2",
-    "@nuxtjs/tailwindcss": "^6.6.4",
+    "@nuxtjs/eslint-module": "~4.0.0",
+    "@nuxtjs/tailwindcss": "~6.0.0",
     "@types/marked": "4.0.8",
+    "@vee-validate/i18n": "^4.9.6",
+    "@vee-validate/rules": "^4.9.6",
     "eslint": "8.39.0",
     "eslint-friendly-formatter": "4.0.1",
     "marked": "4.3.0",
-    "qrcode.vue": "1.7.0",
-    "raw-loader": "4.0.2",
+    "qrcode.vue": "~3.4.0",
     "sass": "^1.60.0",
-    "sass-loader": "10.4.1",
-    "vee-validate": "3.4.15"
-  },
-  "browserslist": [
-    ">0.25%",
-    "not ie 11",
-    "not op_mini all"
-  ]
+    "vee-validate": "~4.0.0"
+  }
 }

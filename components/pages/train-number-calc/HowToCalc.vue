@@ -47,8 +47,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api';
-
 interface FreightHtmlList {
   html: string;
   list?: string[];

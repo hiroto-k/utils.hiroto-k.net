@@ -1,11 +1,11 @@
 <template>
   <aside class="menu">
-    <p class="menu-label" v-text="label">
+    <p class="menu-label" v-text="props.label">
     </p>
 
     <ul class="py-1 list-unstyled fw-normal small">
       <li
-        v-for="(link, linksKey) in links"
+        v-for="(link, linksKey) in props.links"
         :key="linksKey"
       >
         <nuxt-link
@@ -20,23 +20,15 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropOptions } from '@nuxtjs/composition-api';
+<script setup lang="ts">
 import { Link } from '~/types';
 
-export default defineComponent({
-  name: 'LinksMenu',
-  props: {
-    links: {
-      required: true,
-      type: Array,
-    } as PropOptions<Link[]>,
-    label: {
-      type: String,
-      default (): string {
-        return 'pages';
-      },
-    } as PropOptions<string>,
-  },
+interface Props {
+  links: Link[]
+  label?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  label: 'pages',
 });
 </script>
