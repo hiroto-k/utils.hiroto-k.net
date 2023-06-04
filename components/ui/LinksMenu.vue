@@ -25,8 +25,10 @@ import { Link } from '~/types';
 
 interface Props {
   links: Link[]
-  label: string
+  label?: string
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  label: 'pages',
+});
 </script>
