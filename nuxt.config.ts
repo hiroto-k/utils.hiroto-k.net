@@ -40,14 +40,14 @@ export default defineNuxtConfig({
   ** Nuxt.js modules
   */
   modules: [
-  ],
-
-  buildModules: [
     '@nuxtjs/tailwindcss',
 
     '@nuxtjs/eslint-module',
 
     '@pinia/nuxt',
+  ],
+
+  buildModules: [
   ],
 
   /*
