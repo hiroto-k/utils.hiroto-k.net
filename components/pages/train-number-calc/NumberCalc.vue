@@ -8,7 +8,7 @@
         @input="handleChange"
         v-model="value"
         type="text"
-        class="mt-1 px-3 py-2 bg-white shadow-sm border border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
+        class="mt-1 px-3 py-2 bg-white shadow-sm border-2 placeholder-slate-400 focus:outline-none block w-full rounded-md"
         :class="inputClass"
         placeholder="列車番号を入力"
       >
@@ -38,11 +38,6 @@ defineRule('numeric', numeric);
 // @ts-ignore
 defineRule('between', between);
 defineRule('not-starts-with-zero', (value) => typeof value === 'string' ? !value.startsWith('0') : false);
-
-// ja.messages['not-starts-with-zero'] = '{_field_}は不正な値です。';
-// localize('ja', {
-//   messages: ja.messages,
-// });
 
 export default defineComponent({
   name: 'NumberCalc',
