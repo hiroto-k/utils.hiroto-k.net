@@ -2,13 +2,13 @@
   <div class="play-container">
     <div class="my-3">
       <button
-        class="bg-green-400 hover:bg-green-300 text-white rounded-full px-4 py-2 mb-3 mr-3"
+        class="bg-green-400 hover:bg-green-300 text-white rounded-full px-4 py-2 mb-3 mr-4"
         @click="playSuccessTone"
       >
         Play Success Tone
       </button>
       <button
-        class="bg-red-400 hover:bg-red-300 text-white rounded-full px-4 py-2 mb-3 mr-3"
+        class="bg-red-400 hover:bg-red-300 text-white rounded-full px-4 py-2 mb-3"
         @click="playAlertTone"
       >
         Play Alert Tone
