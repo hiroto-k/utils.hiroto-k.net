@@ -1,6 +1,5 @@
-import { NuxtConfig } from '@nuxt/types';
 
-const nuxtConfig: NuxtConfig = {
+export default defineNuxtConfig({
   mode: 'universal',
 
   /*
@@ -70,6 +69,4 @@ const nuxtConfig: NuxtConfig = {
       });
     },
   },
-};
-
-module.exports = nuxtConfig;
+});
