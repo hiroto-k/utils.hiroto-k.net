@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
+import { useQrCodeGeneratorStore } from '~/store/qrCodeGenerator';
 
 export default defineComponent({
   name: 'ValueField',

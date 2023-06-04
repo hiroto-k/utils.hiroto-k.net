@@ -49,7 +49,7 @@ import ErrorCorrectionLevelField from '~/components/pages/qr-code/ErrorCorrectio
 import RenderAsField from '~/components/pages/qr-code/RenderAsField';
 import BackGroundField from '~/components/pages/qr-code/BackGroundField';
 import ForeGroundField from '~/components/pages/qr-code/ForeGroundField';
-import { useQrCodeGeneratorStore } from '../../store/qrCodeGenerator';
+import { useQrCodeGeneratorStore } from '~/store/qrCodeGenerator';
 
 export default defineComponent({
   head: {},

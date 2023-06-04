@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { QrCodeErrorCorrectionLevel } from '~/types';
-import { useQrCodeGeneratorStore } from '../../../store/qrCodeGenerator';
+import { useQrCodeGeneratorStore } from '~/store/qrCodeGenerator';
 
 interface ErrorCorrectionLevelFormOption {
   value: QrCodeErrorCorrectionLevel;
