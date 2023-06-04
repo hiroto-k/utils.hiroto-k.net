@@ -1,8 +1,8 @@
 <template>
   <div class="app bg-white scroll-smooth h-screen">
     <main class="p-10">
-      <nuxt>
-      </nuxt>
+      <slot>
+      </slot>
     </main>
 
     <page-footer>
