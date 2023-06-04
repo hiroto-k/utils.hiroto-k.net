@@ -6843,18 +6843,13 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.9.6:
+vee-validate@^4.9.6, vee-validate@~4.9.0:
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.9.6.tgz#9618b210d4d04ac8f4e3cf989a9e1166ad123ad7"
   integrity sha512-2WYuetx76nH1UXUNM/OBvh9W0kGrr37xo9PgroHcDEbfpxum4MMMb4TjIkYdmrosE2YU54SoUnJrchYegmV2Kg==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
     type-fest "^3.10.0"
-
-vee-validate@~4.0.0:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.0.7.tgz#9d7b183fd8f80e94448756365576d59a6d54654d"
-  integrity sha512-7UgymoScE9Bd6kBOXSVVdM8nHYE/SGqbNt784rZKuMbv243J1zO+a0iw2FUy2FxnX8S/221k9JqJ2VevE+NsCg==
 
 vite-node@^0.25.2:
   version "0.25.8"
