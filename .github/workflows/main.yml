@@ -75,10 +75,10 @@ jobs:
             utils-net-
 
       - run: docker-compose build
-      - run: docker-compose run --rm nuxt yarn install
-      - run: docker-compose run --rm nuxt npm rebuild node-sass
-      - run: docker-compose run --rm nuxt yarn run build
-      - run: docker-compose run --rm nuxt yarn run lint
+      - run: docker-compose run --rm app yarn install
+      - run: docker-compose run --rm app npm rebuild node-sass
+      - run: docker-compose run --rm app yarn run build
+      - run: docker-compose run --rm app yarn run lint
 
       - name: Slack Notification
         uses: homoluctus/slatify@v1.6
