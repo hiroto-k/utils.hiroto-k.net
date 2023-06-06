@@ -14,6 +14,9 @@
         <size-field>
         </size-field>
 
+        <margin-field>
+        </margin-field>
+
         <error-correction-level-field>
         </error-correction-level-field>
 
@@ -45,6 +48,7 @@
 import QrCodeVue from 'qrcode.vue';
 import ValueField from '~/components/pages/qr-code/ValueField';
 import SizeField from '~/components/pages/qr-code/SizeField';
+import MarginField from '~/components/pages/qr-code/MarginField';
 import ErrorCorrectionLevelField from '~/components/pages/qr-code/ErrorCorrectionLevelField';
 import RenderAsField from '~/components/pages/qr-code/RenderAsField';
 import BackGroundField from '~/components/pages/qr-code/BackGroundField';
@@ -87,6 +91,7 @@ export default defineComponent({
     QrCodeVue,
     ValueField,
     SizeField,
+    MarginField,
     ErrorCorrectionLevelField,
     RenderAsField,
     BackGroundField,
