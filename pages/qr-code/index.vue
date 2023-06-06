@@ -33,6 +33,7 @@
       <qr-code-vue
         :value="value"
         :size="size"
+        :margin="margin"
         :level="level"
         :render-as="renderAs"
         :background="backGround"
@@ -71,6 +72,7 @@ export default defineComponent({
 
     const value = computed(() => store.value);
     const size = computed(() => store.size);
+    const margin = computed(() => store.margin);
     const level = computed(() => store.level);
     const renderAs = computed(() => store.renderAs);
     const backGround = computed(() => store.backGround);
@@ -81,6 +83,7 @@ export default defineComponent({
       description,
       value,
       size,
+      margin,
       level,
       renderAs,
       backGround,
