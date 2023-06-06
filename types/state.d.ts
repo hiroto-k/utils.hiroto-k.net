@@ -40,6 +40,7 @@ export interface FareTicketRouteStoreActions {
 export interface QrCodeGeneratorState {
   value: string;
   size: number;
+  margin: number;
   level: QrCodeErrorCorrectionLevel;
   renderAs: QrCodeRenderAsOptionValue;
   backGround: string;
