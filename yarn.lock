@@ -1351,16 +1351,16 @@
     unhead "1.1.28"
 
 "@vee-validate/i18n@^4.9.6":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.10.3.tgz#009a691e8cd7772e609c1a0f3c312c0a1e40c4fe"
-  integrity sha512-5K9HiHIuvdFs9y635V9WL/D8FYxASIwNiE/vRl6tsbTWHhHvUSPNnCGoCWlmn50q5jUEU96w2HPF8bbi5bKjUA==
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.10.6.tgz#049112d23fab4de991a47bb2b31a44cf7aeb2e47"
+  integrity sha512-JK1+1t0glabI/gKSGNKIcEqs7EZqVAreHszq/xXN1p72I/wMK3xbIP7guJK+c/DrPFiHRYyUSn0BZ+0hn2ajwQ==
 
 "@vee-validate/rules@^4.9.6":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.10.3.tgz#bb1439d96d5d3dc5d0de497b4e1d50cca9201358"
-  integrity sha512-AKMkgwRrecFfzlZBeapp3NvEYqgF27rA57Hjufiq0Nrqzm8jsDVyzNlK36vGNUiEo/qxV+gxTRnyqSDp6EY/sQ==
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.10.6.tgz#fabb307d2dee76651a11f221a54786beff92854a"
+  integrity sha512-TZaBFUdJhyrEann1gOBiJPUo5EJPbnw9tMrN+0Qx/05yg06Q+hxp67jKcy4cw/ZKgqkd2uMYlqR/bpkDmeVsTQ==
   dependencies:
-    vee-validate "^4.10.3"
+    vee-validate "^4.10.6"
 
 "@vercel/nft@^0.22.6":
   version "0.22.6"
@@ -6710,7 +6710,15 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.10.3, vee-validate@~4.10.0:
+vee-validate@^4.10.6:
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.6.tgz#7c934938c0cde8b9461ce17ff310c7224cff45de"
+  integrity sha512-XpZ135NrgEMF/6vyRI5nMSmVXJoirT9m3mHYBB+9DfF64yTQTKO/lKLsVWyjbb00sHHjZ4TLy3IS3az8YVh95w==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^3.12.0"
+
+vee-validate@~4.10.0:
   version "4.10.3"
   resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.3.tgz#552bbaa4cb418fa2cf460956db9c75f09cf6ad41"
   integrity sha512-JDEpP765Hg5bLJBBbaYutnmiKXh4YX4Jz1FKIBp2Fw5PiuL8ULdZSuJZNbfvbA3ClMV+aJYWIlzA8iLyWGq+fQ==
