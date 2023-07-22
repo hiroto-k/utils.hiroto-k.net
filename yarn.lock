@@ -1431,11 +1431,11 @@
   integrity sha512-XPaLaGXTLZQpFx49UN5Uycv3p3opVHWiiG2RwMzEV8grhrYwfbZ7pqdV8UsVcWTulTsqxj2aoLLPX9rgLDbpQQ==
 
 "@vee-validate/rules@^4.9.6":
-  version "4.10.7"
-  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.10.7.tgz#ef8aaefc2b31fcd477f8b49e1d9d101ac6c53ec9"
-  integrity sha512-mr2QetQqcJWfO2ZiOQ/Mc/0ayYfGOr1deRD/ULjwFdUzwdA+VU6Zlb+qv+p9KnjWCcwPTYhL2omb5SCO0FQOWQ==
+  version "4.10.8"
+  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.10.8.tgz#1537ebfe6edfea4f48ed090f010d0ff5ee8cddbf"
+  integrity sha512-cg7Pd+mZhRfKDc2oC1HgbVHh0aTW1ifvxiuEZJ0Sg0obsYFukWTL86uIlUrGF3SljZbMYaI+HoOO+Xv5BU0/nA==
   dependencies:
-    vee-validate "^4.10.7"
+    vee-validate "^4.10.8"
 
 "@vercel/nft@^0.22.6":
   version "0.22.6"
@@ -6434,6 +6434,11 @@ type-fest@^3.13.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.1.tgz#bb744c1f0678bea7543a2d1ec24e83e68e8c8706"
   integrity sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==
 
+type-fest@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.0.0.tgz#1c87b05c3f0304a2f911b5a47bb45fa4d62031db"
+  integrity sha512-d/oYtUnPM9zar2fqqGLYPzgcY0qUlYK0evgNVti93xpzfjGkMgZHu9Lvgrkn0rqGXTgsFRxFamzjGoD9Uo+dgw==
+
 type-is@^1.6.16:
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
@@ -6662,7 +6667,15 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.10.7, vee-validate@~4.10.0:
+vee-validate@^4.10.8:
+  version "4.10.8"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.8.tgz#0e3ba44463cf52a12e85e6c11609a9422350f983"
+  integrity sha512-4VWziid3tdlIMGWr0D24YG/e+Q+M6TMK2DQg8dMvufgNyHFIpKxkMKwWoSMuQS0Pi0wKJEo5F5Kok8pXlei4vA==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^4.0.0"
+
+vee-validate@~4.10.0:
   version "4.10.7"
   resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.7.tgz#dfdb46fa23fb230a0082f1866f1c4359ce470c66"
   integrity sha512-LvJ2vAMyeJBoDnm+Ic37qvQRVsLirLynaBKW2mYCo05V6fOz7yFhMGECzW2fLsNmaHgRaaxivF/ky91dLx4efw==
