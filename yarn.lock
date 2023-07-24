@@ -1426,9 +1426,9 @@
     unhead "1.1.30"
 
 "@vee-validate/i18n@^4.9.6":
-  version "4.10.7"
-  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.10.7.tgz#b6024aaf8610c07f1eec00f6f78667bfea7ce61b"
-  integrity sha512-XPaLaGXTLZQpFx49UN5Uycv3p3opVHWiiG2RwMzEV8grhrYwfbZ7pqdV8UsVcWTulTsqxj2aoLLPX9rgLDbpQQ==
+  version "4.10.8"
+  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.10.8.tgz#26ba9c494173bad6ddab7b9bdde415652fb20929"
+  integrity sha512-ZnmKFUyvHqSyqtvK1TitXj3su7Dy8VlTD1WaEfaI4scqmKaoKJCKCDyUkfT/RiuF8Kkf5JpWFTU9z/EWKuoPUw==
 
 "@vee-validate/rules@^4.9.6":
   version "4.10.8"
