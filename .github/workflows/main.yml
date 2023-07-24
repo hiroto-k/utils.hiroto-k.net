@@ -3,52 +3,6 @@ name: Node CI
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.19.1]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node_modules
-        with:
-          path: node_modules
-          key: utils-net-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            utils-net-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-            utils-net-build-${{ env.cache-name }}-
-            utils-net-build-
-            utils-net-
-
-      - name: Run yarn install
-        run: yarn install
-
-      - name: Run yarn build
-        run: yarn run build
-
-      - name: Run yarn lint
-        run: yarn run lint
-
-      - name: Slack Notification
-        uses: homoluctus/slatify@v1.6
-        if: failure()
-        with:
-          job_name: '*Node CI*'
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-
   docker:
     runs-on: ubuntu-latest
 
@@ -67,16 +21,14 @@ jobs:
           cache-name: cache-node_modules
         with:
           path: node_modules
-          key: utils-net-docker-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+          key: utils-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            utils-net-docker-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-            utils-net-docker-${{ env.cache-name }}-
-            utils-net-docker-
-            utils-net-
+            utils-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+            utils-${{ env.cache-name }}-
+            utils-
 
       - run: docker-compose build
       - run: docker-compose run --rm app yarn install
-      - run: docker-compose run --rm app npm rebuild node-sass
       - run: docker-compose run --rm app yarn run build
       - run: docker-compose run --rm app yarn run lint
 
