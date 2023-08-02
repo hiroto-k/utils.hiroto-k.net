@@ -1349,16 +1349,16 @@
     unhead "1.1.35"
 
 "@vee-validate/i18n@^4.9.6":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.11.0.tgz#92230c70393782ce100d694a71537d6c386a8777"
-  integrity sha512-OUnSIGdFLn3+f+M5fEXQCgQg4pJqW9jotpwgAnMI/J9Jz/kvL5JU9qX4qbZWdszZzhqcHEq6W0/QrAprF1So3g==
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.11.1.tgz#2170b28598306a42a935be8073621f45275fc352"
+  integrity sha512-HhQwkz+G8PoXv6A3dnttSAslbCXw3ecJI9LF1UQHEoWs/vEYnSH746jf0q6RzDzdJ+7jD3KmS9ahsl658I/qQg==
 
 "@vee-validate/rules@^4.9.6":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.11.0.tgz#cad10528790d9d01f050f612dcf64d8abb2b3713"
-  integrity sha512-l0K03Y+7UoKpZMdV2KTaVYSfjBMQhoPsJDNqDObfjFdE3sr607ise/4MCz46T8y9m1mzbFASYSPZ7d/ICrELUw==
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.11.1.tgz#8d4c0951ae4cca8f63b6a15fc91ee372e2846824"
+  integrity sha512-rlRMDEuzXS+EOkxDUGXbJAaEjaulFAH+nU4v8ej6cIlLTtVO60MvAauiQbp1ZQytaGmNZPBxeq0sMAfb+0LeaA==
   dependencies:
-    vee-validate "^4.11.0"
+    vee-validate "^4.11.1"
 
 "@vercel/nft@^0.22.6":
   version "0.22.6"
@@ -6623,10 +6623,10 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.11.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.11.0.tgz#c0adb28e4440d3617a0b5134162edba5fbbff0d8"
-  integrity sha512-+0sA76+qJtDZLlnV6PT4JLiMt2o/9XKoi79m4NzfPNruF96BHiz9/cIqjQis87M55mmPQKm4E94dR9oRbOEBYA==
+vee-validate@^4.11.1:
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.11.1.tgz#82fb210fb23660eaa3710b594e3de0b5017e997d"
+  integrity sha512-NGL2qrhoXAng+pZvu9dgQRhCuNBKeXcusdUloN3jnXUxbmLUCJV2kgleS5Jr7yF2iTWvDlDQd5m+Qp6cP1wSgw==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
     type-fest "^4.0.0"
