@@ -180,6 +180,7 @@ type SeasonValue = '01_winter' | '02_spring' | '03_summer' | '04_autumn' | '10_o
 interface Season {
   name: SeasonName
   value: SeasonValue
+  isCurrentSeason: (month: number)=> boolean
 }
 
 export default defineNuxtComponent({
@@ -193,25 +194,34 @@ export default defineNuxtComponent({
       {
         name: '冬アニメ',
         value: '01_winter',
+        // @note 準備期間を考慮して放送月より1月前からの3ヶ月分を入れる
+        isCurrentSeason: (month) => [12, 1, 2].includes(month),
       },
       {
         name: '春アニメ',
         value: '02_spring',
+        isCurrentSeason: (month) => [3, 4, 5].includes(month),
       },
       {
         name: '夏アニメ',
         value: '03_summer',
+        isCurrentSeason: (month) => [6, 7, 8].includes(month),
       },
       {
         name: '秋アニメ',
         value: '04_autumn',
+        isCurrentSeason: (month) => [9, 10, 11].includes(month),
       },
       {
         name: 'アニメ以外',
         value: '10_other',
+        isCurrentSeason: () => false,
       },
     ]);
-    const season = ref<SeasonValue>(seasonsList.value[0].value);
+
+    const currentMonth = new Date().getMonth() + 1;
+    const currentSeasonIndex = seasonsList.value.map((season) => season.isCurrentSeason(currentMonth)).indexOf(true);
+    const season = ref<SeasonValue>(seasonsList.value[currentSeasonIndex === -1 ? 0 : currentSeasonIndex].value);
     const isUnclassifiable = ref<boolean>(false);
     const isRepeat = ref<boolean>(false);
     const programName = ref<string>('');
