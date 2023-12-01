@@ -28,7 +28,7 @@
   "devDependencies": {
     "@hiroxto/eslint-config": "1.0.1",
     "@nuxtjs/eslint-module": "~4.1.0",
-    "@nuxtjs/tailwindcss": "~6.8.0",
+    "@nuxtjs/tailwindcss": "~6.10.0",
     "@types/marked": "5.0.2",
     "@vee-validate/i18n": "^4.9.6",
     "@vee-validate/rules": "^4.9.6",
