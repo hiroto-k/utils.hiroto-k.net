@@ -37,6 +37,6 @@
     "marked": "9.0.3",
     "qrcode.vue": "~3.4.0",
     "sass": "^1.60.0",
-    "vee-validate": "~4.11.0"
+    "vee-validate": "~4.12.0"
   }
 }
