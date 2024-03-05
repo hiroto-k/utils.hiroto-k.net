@@ -1,5 +1,8 @@
 
 export default defineNuxtConfig({
+  ssr: true,
+  target: 'static',
+
   /*
   ** Global CSS
   */
