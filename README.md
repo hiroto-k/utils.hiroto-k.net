@@ -1,7 +1,6 @@
 # utils.hiroxto.net
 
 ![GitHub Actions Node CI Status](https://github.com/hiroxto/utils.hiroxto.net/workflows/Node%20CI/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d63c4173-f731-40c0-bfae-00d2f5276ee1/deploy-status)](https://app.netlify.com/sites/utils-hiroxto/deploys)
 
 Utility site for me.
 
