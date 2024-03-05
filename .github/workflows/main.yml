@@ -1,37 +1,44 @@
 name: Node CI
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
 
 jobs:
-  docker:
+  test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ubuntu Version
-        run: cat /etc/os-release
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-      - name: Docker Version
-        run: docker version
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
 
-      - name: Cache node_modules
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Cache pnpm store
         uses: actions/cache@v3
         env:
-          cache-name: cache-node_modules
+          cache-name: pnpm-store
         with:
-          path: node_modules
-          key: utils-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            utils-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-            utils-${{ env.cache-name }}-
-            utils-
+            ${{ runner.os }}-${{ env.cache-name }}
 
-      - run: docker-compose build
-      - run: docker-compose run --rm app yarn install
-      - run: docker-compose run --rm app yarn run build
-      - run: docker-compose run --rm app yarn run lint
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm run lint
