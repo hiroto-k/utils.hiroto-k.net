@@ -249,7 +249,10 @@ export default defineNuxtComponent({
     useHead(() => ({
       title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: description.value },
+        { name: 'description', content: description.value },
+        { property: 'og:title', content: title.value },
+        { property: 'og:description', content: description.value },
+        { property: 'og:url', content: 'https://utils.hiroxto.net/epgs/recorded-name' },
       ],
     }));
 

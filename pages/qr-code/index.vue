@@ -62,11 +62,16 @@ export default defineComponent({
     const store = useQrCodeGeneratorStore();
     const title = ref<string>('QRコード生成');
     const description = ref<string>('ブラウザでQRコードを生成．');
+    const r = useRouter();
+    console.log(r);
 
     useHead(() => ({
       title: title.value,
       meta: [
-        { hid: 'description', name: 'description', content: description.value },
+        { name: 'description', content: description.value },
+        { property: 'og:title', content: title.value },
+        { property: 'og:description', content: description.value },
+        { property: 'og:url', content: 'https://utils.hiroxto.net/qe-code' },
       ],
     }));
 
