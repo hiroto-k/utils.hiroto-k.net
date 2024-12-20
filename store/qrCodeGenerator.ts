@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { QrCodeGeneratorState } from '~/types';
+import type { QrCodeGeneratorState } from '~/types';
 
 export const useQrCodeGeneratorStore = defineStore<'QrCodeGenerator', QrCodeGeneratorState>('QrCodeGenerator', {
   state: () => ({

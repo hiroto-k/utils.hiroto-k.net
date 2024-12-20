@@ -1,4 +1,4 @@
-import { Formatter, Route } from '~/types';
+import type { Formatter, Route } from '~/types';
 
 /**
  * MR52の経路入力画面ライクなフォーマッター

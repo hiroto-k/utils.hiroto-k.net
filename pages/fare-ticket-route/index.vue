@@ -255,7 +255,7 @@
 import { DefaultFormatter } from '~/lib/fare-ticket-route/formatter/default-formatter';
 import { LikeMR52Formatter } from '~/lib/fare-ticket-route/formatter/like-mr52-formatter';
 import { useFareTicketRoute } from '~/store/fareTicketRoute';
-import { Formatter, Route, TicketType } from '~/types';
+import type { Formatter, Route, TicketType } from '~/types';
 
 interface FormatterSet {
   name: string

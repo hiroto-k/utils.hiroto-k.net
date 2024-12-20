@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from '~/types';
+import type { Link } from '~/types';
 
 interface Props {
   links: Link[]

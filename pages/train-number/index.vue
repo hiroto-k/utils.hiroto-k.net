@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import LinksMenu from '~/components/ui/LinksMenu';
-import { Link } from '~/types';
+import type { Link } from '~/types';
 
 export default defineNuxtComponent({
   head: {},

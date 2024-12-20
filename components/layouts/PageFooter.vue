@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Link } from '~/types';
+import type { Link } from '~/types';
 
 export default defineNuxtComponent({
   name: 'PageFooter',

@@ -1,4 +1,4 @@
-import { Formatter, Route } from '~/types';
+import type { Formatter, Route } from '~/types';
 
 /**
  * デフォルトの横向き出力フォーマッター

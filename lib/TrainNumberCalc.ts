@@ -1,4 +1,4 @@
-import { TrainNumberType } from '~/types';
+import type { TrainNumberType } from '~/types';
 
 /**
  * 列車番号から列車種別を計算するクラス
