@@ -25,7 +25,9 @@ export default defineComponent({
     useHead(() => ({
       title: props.title,
       meta: [
-        { hid: 'description', name: 'description', content: description.value },
+        { name: 'description', content: description.value },
+        { property: 'og:title', content: props.title },
+        { property: 'og:description', content: description.value },
       ],
     }));
 
