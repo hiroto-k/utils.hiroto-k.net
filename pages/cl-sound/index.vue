@@ -37,9 +37,6 @@ export default defineNuxtComponent({
 
         { property: 'twitter:card', content: 'summary_large_image' },
         { property: 'twitter:site', content: '@hiroxto' },
-        { property: 'twitter:title', content: title },
-        { property: 'twitter:description', content: description.value },
-        { property: 'twitter:image', content: 'https://utils.hiroxto.net/assets/cl-sound/ogp-default.png' },
       ],
     }));
 
