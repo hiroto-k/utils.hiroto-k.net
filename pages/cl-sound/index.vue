@@ -33,7 +33,13 @@ export default defineNuxtComponent({
         { property: 'og:title', content: title.value },
         { property: 'og:description', content: description.value },
         { property: 'og:url', content: 'https://utils.hiroxto.net/cl-sound' },
-        { property: 'og:image', content: 'https://utils.hiroxto.net/cl.png' },
+        { property: 'og:image', content: 'https://utils.hiroxto.net/assets/cl-sound/ogp-default.png' },
+
+        { property: 'twitter:card', content: 'summary_large_image' },
+        { property: 'twitter:site', content: '@hiroxto' },
+        { property: 'twitter:title', content: title },
+        { property: 'twitter:description', content: description.value },
+        { property: 'twitter:image', content: 'https://utils.hiroxto.net/assets/cl-sound/ogp-default.png' },
       ],
     }));
 
