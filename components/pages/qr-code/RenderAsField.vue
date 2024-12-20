@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { QrCodeRenderAsOptionValue } from '~/types';
+import type { QrCodeRenderAsOptionValue } from '~/types';
 import { useQrCodeGeneratorStore } from '~/store/qrCodeGenerator';
 
 interface RenderAsFormOption {

@@ -31,7 +31,7 @@
 import { useField, defineRule } from 'vee-validate';
 import { numeric, between } from '@vee-validate/rules';
 import TrainNumberCalc from '~/lib/TrainNumberCalc';
-import { TrainNumberType } from '~/types';
+import type { TrainNumberType } from '~/types';
 
 defineRule('numeric', numeric);
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
