@@ -53,7 +53,7 @@ export default defineNuxtComponent({
       },
       {
         title: '乗車券の経路作成',
-        to: '/fare-ticket-route',
+        to: 'https://fare-ticket-route-planning.hiroxto.net/',
       },
       {
         title: '録画サーバーの保存先のパスを生成',
